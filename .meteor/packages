@@ -1,0 +1,12 @@
+standard-app-packages
+iron:router
+twbs:bootstrap
+semantic:ui
+flemay:less-autoprefixer
+useraccounts:core
+useraccounts:semantic-ui
+useraccounts:iron-routing
+semantic:ui-data
+semantic:ui-modal
+accounts-password
+accounts-base
