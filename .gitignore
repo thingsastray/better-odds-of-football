@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ### WebStorm ###
 .idea/
 .DS_STORE
@@ -24,3 +25,7 @@ node_modules
 .git
 .build*
 packages/
+=======
+.meteor/local
+.meteor/meteorite
+>>>>>>> 0758fef77c78323870ab4a097e34a50b0f643e4a
