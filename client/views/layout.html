@@ -9,13 +9,33 @@
 
 <!--Layout that displays on every page-->
 <template name="applicationLayout">
+  {{> header}}
   <div class="page-wrap">
     {{> yield}}
   </div>
   {{> footer}}
 </template>
 
+<template name="header">
+  <h2 class="ui center aligned icon header">
+    <i class="signal icon"></i>
+      Better Odds Of Football
+  </h2>
+</template>
+
 
 <!--footer that is attached at the bottom of every page-->
 <template name="footer">
+  <div class="ui vertical footer segment form-page">
+    <div class="ui">
+      <div class="ui stackable inverted divided equal height stackable grid">
+        <div class="center aligned column">
+          <a class="ui inverted green icon button" href="https://github.com/brockinit">
+          <i class="github alternate icon"></i>
+          <div class="header">GitHub</div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>

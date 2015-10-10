@@ -1,5 +1,5 @@
 Router.route('/', function () {
-  this.render('introLayout');
+  this.render('loginLayout');
 });
 
 Router.route('/dashboard/', {
