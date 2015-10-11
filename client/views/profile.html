@@ -1,0 +1,32 @@
+<template name="profileLayout">
+  <div class="ui vertical stripe segment">
+    <div class="ui middle aligned center aligned grid">
+      <div class="column">
+          <div class="ui container">
+            {{> editInfo}}
+          </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="editInfo">
+  <div class="ui form">
+    <div class="field">
+      <label>Change Username</label>
+      <input type="text" placeholder="..." id="username">
+    </div>
+    <div class="field">
+      <label>Old Password</label>
+      <input type="password" id="password" placeholder="...">
+    </div>
+    <div class="field">
+      <label>New Password</label>
+      <input type="password" id="newpassword" placeholder="...">
+    </div>
+    <button class="ui green inverted button" id="save-changes">Save Changes</button>
+    <button class="ui green inverted button cancel">
+      Cancel
+    </button>
+  </div>
+</template>

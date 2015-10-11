@@ -1,5 +1,6 @@
 <!--Dashboard page. This is where the main content is found-->
 <template name="dashboardLayout">
+  {{> topbar}}
   <div class="content">
     <div class="ui stackable very relaxed grid container">
       <div class="three column computer one column mobile demo row">
@@ -20,6 +21,28 @@
          </div>
 
         </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="topbar">
+  <div class="ui stackable container menu">
+    <div class="left item">
+      <div class="ui header">
+        Welcome, {{currentUser.username}}
+      </div>
+      <a class="ui inverted green button center aligned" id="user-profile">
+        Profile
+      </a>
+    </div>
+    <div class="center item">
+      {{> logoutmodal}}
+    </div>
+    <div class="right item">
+      <div class="ui icon input">
+        <input type="text" placeholder="Search...">
+        <i class="search link icon"></i>
       </div>
     </div>
   </div>
