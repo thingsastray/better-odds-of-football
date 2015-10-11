@@ -11,9 +11,7 @@
           </div>
         </div>
         <div class="eight wide column">
-          <div class="container">
-            Hey
-          </div>
+            {{> mainChart}}
         </div>
         <div class="four wide column">
           <div class="container">
@@ -45,5 +43,11 @@
         <i class="search link icon"></i>
       </div>
     </div>
+  </div>
+</template>
+
+<template name="mainChart">
+  <div id="chart">
+    <svg></svg>
   </div>
 </template>
