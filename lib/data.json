@@ -1,283 +1,823 @@
 
-Template.dashboardLayout.rendered = function() {
-
-}
-
-Template.dashboardLayout.created = function() {
-
-}
-
-Template.dashboardLayout.destroyed = function() {
-
-}
-
-Template.dashboardLayout.events({
-  'click #user-profile' : function(event, template) {
-    event.preventDefault();
-    Router.go('/profile/');
-  }
-});
-
-
-//main chart template
-Template.mainChart.rendered = function() {
-  nv.addGraph(function() {
-    var chart = nv.models.scatterChart()
-                  .showDistX(true)
-                  .showDistY(true)
-                  .color(d3.scale.category10().range());
-
-    chart.xAxis
-      .tickFormat(d3.format('f'));
-    chart.yAxis
-      .tickFormat(d3.format('f'));
-
-   var scatter = d3.select('#chart svg')
-        .datum(data(4, 30))
-      .transition().duration(500)
-        .call(chart);
-
-    nv.utils.windowResize(chart.update);
-
-    return chart;
-});
-
-}
-
-Template.mainChart.created = function() {
-
-}
-
-Template.mainChart.destroyed = function() {
-
-}
-
-var currentPos = null;
-
-//handles the organization of data and passes it to chart
-var data = (function (groups, points, names) {
-  var positions = ['QB', 'RB', 'WR', 'TE'];
-  dataArray = [],
-  //shapes = ['circle', 'cross', 'triangle-up', 'triangle-down', 'diamond', 'square'],
-  random = d3.random.normal();
-
-  for (i = 0; i < groups; i++) {
-    dataArray.push({
-      key : 'Position ' + positions[i],
-      values : []
-    });
-    currentPos = allPos[i].length;
-
-    for (j = 0; j < points; j++) {
-      dataArray[i].values.push({
-        x : allPos[i][j]["TIERS"]
-      , y : allPos[i][j]["SALARY"]
-      , size : Math.random()
-      //, shape : shapes[j % 6]
-      });
-    }
-  }
-  console.log(dataArray);
-  return dataArray;
-});
-
-//finishing organizing qb data
 //begin QB
-var allPos = [
 [
   {
+    "GID":1252,
     "POS":"QB",
     "NAME":"Rodgers, Aaron",
+    "TEAM":"gb",
+    "OPPONENT":"sdg",
+    "HOME/AWAY":"H",
     "SALARY":9300,
-    "TIERS":1
+    "SALARY CHANGE":100,
+    "POINTS":114.04,
+    "GP":5,
+    "PTS/GAME":22.81,
+    "PTS/G/$":2.45,
+    "PTS/G(ALT)":22.81,
+    "BYE WEEK":7,
+    "FIELD15":""
   },
   {
+    "GID":1131,
     "POS":"QB",
     "NAME":"Brady, Tom",
+    "TEAM":"ne",
+    "OPPONENT":"ind",
+    "HOME/AWAY":"A",
     "SALARY":9000,
-    "TIERS":1,
+    "SALARY CHANGE":200,
+    "POINTS":103.88,
+    "GP":4,
+    "PTS/GAME":25.97,
+    "PTS/G/$":2.89,
+    "PTS/G(ALT)":25.97,
+    "BYE WEEK":4,
+    "FIELD15":""
   },
   {
+    "GID":1409,
     "POS":"QB",
     "NAME":"Luck, Andrew",
+    "TEAM":"ind",
+    "OPPONENT":"ne",
+    "HOME/AWAY":"H",
     "SALARY":8600,
-    "TIERS":2,
+    "SALARY CHANGE":-300,
+    "POINTS":49.62,
+    "GP":3,
+    "PTS/GAME":16.54,
+    "PTS/G/$":1.92,
+    "PTS/G(ALT)":16.54,
+    "BYE WEEK":10,
+    "FIELD15":""
   },
   {
+    "GID":1151,
     "POS":"QB",
     "NAME":"Brees, Drew",
+    "TEAM":"no",
+    "OPPONENT":"atl",
+    "HOME/AWAY":"H",
     "SALARY":8300,
-    "TIERS":2,
+    "SALARY CHANGE":200,
+    "POINTS":69.26,
+    "GP":4,
+    "PTS/GAME":17.32,
+    "PTS/G/$":2.09,
+    "PTS/G(ALT)":17.32,
+    "BYE WEEK":11,
+    "FIELD15":""
   },
   {
+    "GID":1081,
     "POS":"QB",
     "NAME":"Manning, Peyton",
+    "TEAM":"den",
+    "OPPONENT":"cle",
+    "HOME/AWAY":"A",
     "SALARY":8100,
-    "TIERS":4,
+    "SALARY CHANGE":-100,
+    "POINTS":65.96,
+    "GP":5,
+    "PTS/GAME":13.19,
+    "PTS/G/$":1.63,
+    "PTS/G(ALT)":13.19,
+    "BYE WEEK":7,
+    "FIELD15":""
   },
   {
+    "GID":1301,
     "POS":"QB",
     "NAME":"Ryan, Matt",
+    "TEAM":"atl",
+    "OPPONENT":"no",
+    "HOME/AWAY":"A",
     "SALARY":8100,
-    "TIERS":2,
+    "SALARY CHANGE":-200,
+    "POINTS":82.44,
+    "GP":5,
+    "PTS/GAME":16.49,
+    "PTS/G/$":2.04,
+    "PTS/G(ALT)":16.49,
+    "BYE WEEK":10,
+    "FIELD15":""
   },
   {
+    "GID":1207,
     "POS":"QB",
     "NAME":"Palmer, Carson",
+    "TEAM":"ari",
+    "OPPONENT":"pit",
+    "HOME/AWAY":"A",
     "SALARY":8000,
-    "TIERS":1,
+    "SALARY CHANGE":-100,
+    "POINTS":102.74,
+    "GP":5,
+    "PTS/GAME":20.55,
+    "PTS/G/$":2.57,
+    "PTS/G(ALT)":20.55,
+    "BYE WEEK":9,
+    "FIELD15":""
   },
   {
+    "GID":1378,
     "POS":"QB",
     "NAME":"Newton, Cam",
+    "TEAM":"car",
+    "OPPONENT":"sea",
+    "HOME/AWAY":"A",
     "SALARY":8000,
-    "TIERS":4,
+    "SALARY CHANGE":8000,
+    "POINTS":87.86,
+    "GP":4,
+    "PTS/GAME":21.97,
+    "PTS/G/$":2.75,
+    "PTS/G(ALT)":21.97,
+    "BYE WEEK":5,
+    "FIELD15":""
   },
   {
+    "GID":1412,
     "POS":"QB",
     "NAME":"Wilson, Russell",
+    "TEAM":"sea",
+    "OPPONENT":"car",
+    "HOME/AWAY":"H",
     "SALARY":8000,
-    "TIERS":3,
+    "SALARY CHANGE":-200,
+    "POINTS":84.48,
+    "GP":5,
+    "PTS/GAME":16.9,
+    "PTS/G/$":2.11,
+    "PTS/G(ALT)":16.9,
+    "BYE WEEK":9,
+    "FIELD15":""
   },
   {
+    "GID":1225,
     "POS":"QB",
     "NAME":"Manning, Eli",
+    "TEAM":"nyg",
+    "OPPONENT":"phi",
+    "HOME/AWAY":"A",
     "SALARY":7800,
-    "TIERS":2,
+    "SALARY CHANGE":100,
+    "POINTS":96.68,
+    "GP":5,
+    "PTS/GAME":19.34,
+    "PTS/G/$":2.48,
+    "PTS/G(ALT)":19.34,
+    "BYE WEEK":11,
+    "FIELD15":""
   },
   {
+    "GID":1302,
     "POS":"QB",
     "NAME":"Flacco, Joe",
+    "TEAM":"bal",
+    "OPPONENT":"sfo",
+    "HOME/AWAY":"A",
     "SALARY":7800,
-    "TIERS":5,
+    "SALARY CHANGE":100,
+    "POINTS":79.88,
+    "GP":5,
+    "PTS/GAME":15.98,
+    "PTS/G/$":2.05,
+    "PTS/G(ALT)":15.98,
+    "BYE WEEK":9,
+    "FIELD15":""
   },
   {
+    "GID":1344,
     "POS":"QB",
     "NAME":"Bradford, Sam",
+    "TEAM":"phi",
+    "OPPONENT":"nyg",
+    "HOME/AWAY":"H",
     "SALARY":7700,
-    "TIERS":3,
+    "SALARY CHANGE":200,
+    "POINTS":77.64,
+    "GP":5,
+    "PTS/GAME":15.53,
+    "PTS/G/$":2.02,
+    "PTS/G(ALT)":15.53,
+    "BYE WEEK":8,
+    "FIELD15":""
   },
   {
+    "GID":1410,
     "POS":"QB",
     "NAME":"Tannehill, Ryan",
+    "TEAM":"mia",
+    "OPPONENT":"ten",
+    "HOME/AWAY":"A",
     "SALARY":7700,
-    "TIERS":6,
+    "SALARY CHANGE":7700,
+    "POINTS":68.9,
+    "GP":4,
+    "PTS/GAME":17.23,
+    "PTS/G/$":2.24,
+    "PTS/G(ALT)":17.23,
+    "BYE WEEK":5,
+    "FIELD15":""
   },
   {
+    "GID":1403,
     "POS":"QB",
     "NAME":"Dalton, Andy",
+    "TEAM":"cin",
+    "OPPONENT":"buf",
+    "HOME/AWAY":"A",
     "SALARY":7600,
-    "TIERS":2,
+    "SALARY CHANGE":300,
+    "POINTS":118.22,
+    "GP":5,
+    "PTS/GAME":23.64,
+    "PTS/G/$":3.11,
+    "PTS/G(ALT)":23.64,
+    "BYE WEEK":7,
+    "FIELD15":""
   },
   {
+    "GID":1231,
     "POS":"QB",
     "NAME":"Rivers, Philip",
+    "TEAM":"sdg",
+    "OPPONENT":"gb",
+    "HOME/AWAY":"A",
     "SALARY":7500,
-    "TIERS":3,
+    "SALARY CHANGE":0,
+    "POINTS":95.76,
+    "GP":5,
+    "PTS/GAME":19.15,
+    "PTS/G/$":2.55,
+    "PTS/G(ALT)":19.15,
+    "BYE WEEK":10,
+    "FIELD15":""
   },
   {
+    "GID":1263,
     "POS":"QB",
     "NAME":"Cutler, Jay",
+    "TEAM":"chi",
+    "OPPONENT":"det",
+    "HOME/AWAY":"A",
     "SALARY":7500,
-    "TIERS":5,
+    "SALARY CHANGE":100,
+    "POINTS":61.12,
+    "GP":4,
+    "PTS/GAME":15.28,
+    "PTS/G/$":2.04,
+    "PTS/G(ALT)":15.28,
+    "BYE WEEK":7,
+    "FIELD15":""
   },
   {
+    "GID":1400,
     "POS":"QB",
     "NAME":"Taylor, Tyrod",
+    "TEAM":"buf",
+    "OPPONENT":"cin",
+    "HOME/AWAY":"H",
     "SALARY":7400,
-    "TIERS":7,
+    "SALARY CHANGE":-100,
+    "POINTS":107.48,
+    "GP":5,
+    "PTS/GAME":21.5,
+    "PTS/G/$":2.9,
+    "PTS/G(ALT)":21.5,
+    "BYE WEEK":8,
+    "FIELD15":""
   },
   {
+    "GID":1404,
     "POS":"QB",
     "NAME":"Kaepernick, Colin",
+    "TEAM":"sfo",
+    "OPPONENT":"bal",
+    "HOME/AWAY":"H",
     "SALARY":7300,
-    "TIERS":6,
+    "SALARY CHANGE":200,
+    "POINTS":78.36,
+    "GP":5,
+    "PTS/GAME":15.67,
+    "PTS/G/$":2.15,
+    "PTS/G(ALT)":15.67,
+    "BYE WEEK":10,
+    "FIELD15":""
   },
   {
+    "GID":1442,
     "POS":"QB",
     "NAME":"Bortles, Blake",
+    "TEAM":"jac",
+    "OPPONENT":"hou",
+    "HOME/AWAY":"H",
     "SALARY":7300,
-    "TIERS":5,
+    "SALARY CHANGE":400,
+    "POINTS":99.16,
+    "GP":5,
+    "PTS/GAME":19.83,
+    "PTS/G/$":2.72,
+    "PTS/G(ALT)":19.83,
+    "BYE WEEK":8,
+    "FIELD15":""
   },
   {
+    "GID":1466,
     "POS":"QB",
     "NAME":"Mariota, Marcus",
+    "TEAM":"ten",
+    "OPPONENT":"mia",
+    "HOME/AWAY":"H",
     "SALARY":7200,
-    "TIERS":5,
+    "SALARY CHANGE":-200,
+    "POINTS":73,
+    "GP":4,
+    "PTS/GAME":18.25,
+    "PTS/G/$":2.53,
+    "PTS/G(ALT)":18.25,
+    "BYE WEEK":4,
+    "FIELD15":""
   },
   {
+    "GID":1175,
     "POS":"QB",
     "NAME":"McCown, Josh",
+    "TEAM":"cle",
+    "OPPONENT":"den",
+    "HOME/AWAY":"H",
     "SALARY":7000,
-    "TIERS":7,
+    "SALARY CHANGE":300,
+    "POINTS":80.62,
+    "GP":4,
+    "PTS/GAME":20.16,
+    "PTS/G/$":2.88,
+    "PTS/G(ALT)":20.16,
+    "BYE WEEK":11,
+    "FIELD15":""
   },
   {
+    "GID":1254,
     "POS":"QB",
     "NAME":"Smith, Alex",
+    "TEAM":"kan",
+    "OPPONENT":"min",
+    "HOME/AWAY":"A",
     "SALARY":7000,
-    "TIERS":7,
+    "SALARY CHANGE":100,
+    "POINTS":81.54,
+    "GP":5,
+    "PTS/GAME":16.31,
+    "PTS/G/$":2.33,
+    "PTS/G(ALT)":16.31,
+    "BYE WEEK":9,
+    "FIELD15":""
   },
   {
+    "GID":1242,
     "POS":"QB",
     "NAME":"Fitzpatrick, Ryan",
+    "TEAM":"nyj",
+    "OPPONENT":"was",
+    "HOME/AWAY":"H",
     "SALARY":6900,
-    "TIERS":7,
+    "SALARY CHANGE":6900,
+    "POINTS":64.16,
+    "GP":4,
+    "PTS/GAME":16.04,
+    "PTS/G/$":2.32,
+    "PTS/G(ALT)":16.04,
+    "BYE WEEK":5,
+    "FIELD15":""
   },
   {
+    "GID":1340,
     "POS":"QB",
     "NAME":"Stafford, Matthew",
+    "TEAM":"det",
+    "OPPONENT":"chi",
+    "HOME/AWAY":"H",
     "SALARY":6900,
-    "TIERS":6,
+    "SALARY CHANGE":-100,
+    "POINTS":64.1,
+    "GP":5,
+    "PTS/GAME":12.82,
+    "PTS/G/$":1.86,
+    "PTS/G(ALT)":12.82,
+    "BYE WEEK":9,
+    "FIELD15":""
   },
   {
+    "GID":1336,
     "POS":"QB",
     "NAME":"Hoyer, Brian",
+    "TEAM":"hou",
+    "OPPONENT":"jac",
+    "HOME/AWAY":"A",
     "SALARY":6700,
-    "TIERS":7,
+    "SALARY CHANGE":200,
+    "POINTS":48.6,
+    "GP":3,
+    "PTS/GAME":16.2,
+    "PTS/G/$":2.42,
+    "PTS/G(ALT)":16.2,
+    "BYE WEEK":9,
+    "FIELD15":""
   },
   {
+    "GID":1439,
     "POS":"QB",
     "NAME":"Bridgewater, Teddy",
+    "TEAM":"min",
+    "OPPONENT":"kan",
+    "HOME/AWAY":"H",
     "SALARY":6600,
-    "TIERS":6,
+    "SALARY CHANGE":6600,
+    "POINTS":46.86,
+    "GP":4,
+    "PTS/GAME":11.72,
+    "PTS/G/$":1.78,
+    "PTS/G(ALT)":11.72,
+    "BYE WEEK":5,
+    "FIELD15":""
   },
   {
+    "GID":1438,
     "POS":"QB",
     "NAME":"Manziel, Johnny",
+    "TEAM":"cle",
+    "OPPONENT":"den",
+    "HOME/AWAY":"H",
     "SALARY":6400,
-    "TIERS":7,
+    "SALARY CHANGE":0,
+    "POINTS":24.76,
+    "GP":2,
+    "PTS/GAME":12.38,
+    "PTS/G/$":1.93,
+    "PTS/G(ALT)":12.38,
+    "BYE WEEK":11,
+    "FIELD15":""
   },
   {
+    "GID":1155,
     "POS":"QB",
     "NAME":"Vick, Michael",
+    "TEAM":"pit",
+    "OPPONENT":"ari",
+    "HOME/AWAY":"H",
     "SALARY":6300,
-    "TIERS":5,
+    "SALARY CHANGE":-200,
+    "POINTS":26.8,
+    "GP":4,
+    "PTS/GAME":6.7,
+    "PTS/G/$":1.06,
+    "PTS/G(ALT)":6.7,
+    "BYE WEEK":11,
+    "FIELD15":""
   },
   {
+    "GID":1401,
     "POS":"QB",
     "NAME":"Mallett, Ryan",
+    "TEAM":"hou",
+    "OPPONENT":"jac",
+    "HOME/AWAY":"A",
     "SALARY":6300,
-    "TIERS":7,
+    "SALARY CHANGE":-200,
+    "POINTS":47.9,
+    "GP":5,
+    "PTS/GAME":9.58,
+    "PTS/G/$":1.52,
+    "PTS/G(ALT)":9.58,
+    "BYE WEEK":9,
+    "FIELD15":""
   },
   {
+    "GID":1415,
     "POS":"QB",
     "NAME":"Cousins, Kirk",
+    "TEAM":"was",
+    "OPPONENT":"nyj",
+    "HOME/AWAY":"A",
     "SALARY":6200,
-    "TIERS":7,
+    "SALARY CHANGE":-200,
+    "POINTS":71.06,
+    "GP":5,
+    "PTS/GAME":14.21,
+    "PTS/G/$":2.29,
+    "PTS/G(ALT)":14.21,
+    "BYE WEEK":8,
+    "FIELD15":""
   },
   {
+    "GID":1060,
     "POS":"QB",
     "NAME":"Hasselbeck, Matt",
-    "SALARY":6700,
-    "TIERS":7,
+    "TEAM":"ind",
+    "OPPONENT":"ne",
+    "HOME/AWAY":"H",
+    "SALARY":6100,
+    "SALARY CHANGE":400,
+    "POINTS":31.6,
+    "GP":2,
+    "PTS/GAME":15.8,
+    "PTS/G/$":2.59,
+    "PTS/G(ALT)":15.8,
+    "BYE WEEK":10,
+    "FIELD15":""
   },
   {
+    "GID":1227,
     "POS":"QB",
     "NAME":"McCown, Luke",
+    "TEAM":"no",
+    "OPPONENT":"atl",
+    "HOME/AWAY":"H",
     "SALARY":5800,
-    "TIERS":7,
+    "SALARY CHANGE":0,
+    "POINTS":11.4,
+    "GP":1,
+    "PTS/GAME":11.4,
+    "PTS/G/$":1.97,
+    "PTS/G(ALT)":11.4,
+    "BYE WEEK":11,
+    "FIELD15":""
+  },
+  {
+    "GID":1249,
+    "POS":"QB",
+    "NAME":"Orlovsky, Dan",
+    "TEAM":"det",
+    "OPPONENT":"chi",
+    "HOME/AWAY":"H",
+    "SALARY":5700,
+    "SALARY CHANGE":500,
+    "POINTS":10.64,
+    "GP":1,
+    "PTS/GAME":10.64,
+    "PTS/G/$":1.87,
+    "PTS/G(ALT)":10.64,
+    "BYE WEEK":9,
+    "FIELD15":""
+  },
+  {
+    "GID":1350,
+    "POS":"QB",
+    "NAME":"Clausen, Jimmy",
+    "TEAM":"chi",
+    "OPPONENT":"det",
+    "HOME/AWAY":"A",
+    "SALARY":5700,
+    "SALARY CHANGE":0,
+    "POINTS":7.16,
+    "GP":2,
+    "PTS/GAME":3.58,
+    "PTS/G/$":0.63,
+    "PTS/G(ALT)":3.58,
+    "BYE WEEK":7,
+    "FIELD15":""
+  },
+  {
+    "GID":1440,
+    "POS":"QB",
+    "NAME":"Mettenberger, Zach",
+    "TEAM":"ten",
+    "OPPONENT":"mia",
+    "HOME/AWAY":"H",
+    "SALARY":5600,
+    "SALARY CHANGE":0,
+    "POINTS":-0.5,
+    "GP":1,
+    "PTS/GAME":-0.5,
+    "PTS/G/$":-0.09,
+    "PTS/G(ALT)":-0.5,
+    "BYE WEEK":4,
+    "FIELD15":""
+  },
+  {
+    "GID":1421,
+    "POS":"QB",
+    "NAME":"Manuel, E.J.",
+    "TEAM":"buf",
+    "OPPONENT":"cin",
+    "HOME/AWAY":"H",
+    "SALARY":5500,
+    "SALARY CHANGE":0,
+    "POINTS":-0.2,
+    "GP":1,
+    "PTS/GAME":-0.2,
+    "PTS/G/$":-0.04,
+    "PTS/G(ALT)":-0.2,
+    "BYE WEEK":8,
+    "FIELD15":""
+  },
+  {
+    "GID":1262,
+    "POS":"QB",
+    "NAME":"Clemens, Kellen",
+    "TEAM":"sdg",
+    "OPPONENT":"gb",
+    "HOME/AWAY":"A",
+    "SALARY":5200,
+    "SALARY CHANGE":0,
+    "POINTS":6.52,
+    "GP":1,
+    "PTS/GAME":6.52,
+    "PTS/G/$":1.25,
+    "PTS/G(ALT)":6.52,
+    "BYE WEEK":10,
+    "FIELD15":""
+  },
+  {
+    "GID":1290,
+    "POS":"QB",
+    "NAME":"Stanton, Drew",
+    "TEAM":"ari",
+    "OPPONENT":"pit",
+    "HOME/AWAY":"A",
+    "SALARY":5200,
+    "SALARY CHANGE":0,
+    "POINTS":-0.2,
+    "GP":2,
+    "PTS/GAME":-0.1,
+    "PTS/G/$":-0.02,
+    "PTS/G(ALT)":-0.1,
+    "BYE WEEK":9,
+    "FIELD15":""
+  },
+  {
+    "GID":1452,
+    "POS":"QB",
+    "NAME":"Garoppolo, Jimmy",
+    "TEAM":"ne",
+    "OPPONENT":"ind",
+    "HOME/AWAY":"A",
+    "SALARY":5000,
+    "SALARY CHANGE":0,
+    "POINTS":-0.4,
+    "GP":2,
+    "PTS/GAME":-0.2,
+    "PTS/G/$":-0.04,
+    "PTS/G(ALT)":-0.2,
+    "BYE WEEK":4,
+    "FIELD15":""
+  },
+  {
+    "GID":5071,
+    "POS":"QB",
+    "NAME":"Webb, Joe",
+    "TEAM":"car",
+    "OPPONENT":"sea",
+    "HOME/AWAY":"A",
+    "SALARY":4800,
+    "SALARY CHANGE":4800,
+    "POINTS":0,
+    "GP":1,
+    "PTS/GAME":0,
+    "PTS/G/$":0,
+    "PTS/G(ALT)":0,
+    "BYE WEEK":5,
+    "FIELD15":""
+  },
+  {
+    "GID":1423,
+    "POS":"QB",
+    "NAME":"Renfree, Sean",
+    "TEAM":"atl",
+    "OPPONENT":"no",
+    "HOME/AWAY":"A",
+    "SALARY":4800,
+    "SALARY CHANGE":0,
+    "POINTS":-0.4,
+    "GP":1,
+    "PTS/GAME":-0.4,
+    "PTS/G/$":-0.08,
+    "PTS/G(ALT)":-0.4,
+    "BYE WEEK":10,
+    "FIELD15":""
+  },
+  {
+    "GID":1450,
+    "POS":"QB",
+    "NAME":"Griffin, Ryan",
+    "TEAM":"hou",
+    "OPPONENT":"jac",
+    "HOME/AWAY":"A",
+    "SALARY":4800,
+    "SALARY CHANGE":0,
+    "POINTS":2.3,
+    "GP":1,
+    "PTS/GAME":2.3,
+    "PTS/G/$":0.48,
+    "PTS/G(ALT)":2.3,
+    "BYE WEEK":9,
+    "FIELD15":""
+  },
+  {
+    "GID":1232,
+    "POS":"QB",
+    "NAME":"Roethlisberger, Ben",
+    "TEAM":"pit",
+    "OPPONENT":"ari",
+    "HOME/AWAY":"H",
+    "SALARY":0,
+    "SALARY CHANGE":0,
+    "POINTS":56.38,
+    "GP":3,
+    "PTS/GAME":18.79,
+    "PTS/G/$":0,
+    "PTS/G(ALT)":18.79,
+    "BYE WEEK":11,
+    "FIELD15":""
+  },
+  {
+    "GID":1411,
+    "POS":"QB",
+    "NAME":"Weeden, Brandon",
+    "TEAM":"dal",
+    "OPPONENT":"",
+    "HOME/AWAY":"H",
+    "SALARY":0,
+    "SALARY CHANGE":-6400,
+    "POINTS":38.56,
+    "GP":4,
+    "PTS/GAME":9.64,
+    "PTS/G/$":0,
+    "PTS/G(ALT)":9.64,
+    "BYE WEEK":6,
+    "FIELD15":""
+  },
+  {
+    "GID":1413,
+    "POS":"QB",
+    "NAME":"Foles, Nick",
+    "TEAM":"stl",
+    "OPPONENT":"",
+    "HOME/AWAY":"H",
+    "SALARY":0,
+    "SALARY CHANGE":-6400,
+    "POINTS":61.54,
+    "GP":5,
+    "PTS/GAME":12.31,
+    "PTS/G/$":0,
+    "PTS/G(ALT)":12.31,
+    "BYE WEEK":6,
+    "FIELD15":""
+  },
+  {
+    "GID":1437,
+    "POS":"QB",
+    "NAME":"McGloin, Matt",
+    "TEAM":"oak",
+    "OPPONENT":"",
+    "HOME/AWAY":"H",
+    "SALARY":0,
+    "SALARY CHANGE":-5500,
+    "POINTS":10.68,
+    "GP":1,
+    "PTS/GAME":10.68,
+    "PTS/G/$":0,
+    "PTS/G(ALT)":10.68,
+    "BYE WEEK":6,
+    "FIELD15":""
+  },
+  {
+    "GID":1441,
+    "POS":"QB",
+    "NAME":"Carr, Derek",
+    "TEAM":"oak",
+    "OPPONENT":"",
+    "HOME/AWAY":"H",
+    "SALARY":0,
+    "SALARY CHANGE":-6700,
+    "POINTS":76.74,
+    "GP":5,
+    "PTS/GAME":15.35,
+    "PTS/G/$":0,
+    "PTS/G(ALT)":15.35,
+    "BYE WEEK":6,
+    "FIELD15":""
+  },
+  {
+    "GID":1465,
+    "POS":"QB",
+    "NAME":"Winston, Jameis",
+    "TEAM":"tam",
+    "OPPONENT":"",
+    "HOME/AWAY":"H",
+    "SALARY":0,
+    "SALARY CHANGE":-6400,
+    "POINTS":80.16,
+    "GP":5,
+    "PTS/GAME":16.03,
+    "PTS/G/$":0,
+    "PTS/G(ALT)":16.03,
+    "BYE WEEK":6,
+    "FIELD15":""
   }
-],
+]
 //end QB
 
 //begin RB
@@ -287,24 +827,24 @@ var allPos = [
     "GID":2888,
     "POS":"RB",
     "NAME":"Bell, Le'Veon",
-   "TEAM":"pit",
+    "TEAM":"pit",
     "OPPONENT":"ari",
     "HOME/AWAY":"H",
     "SALARY":9000,
-    "TIER":0,
+    "SALARY CHANGE":0,
     "POINTS":67.9,
     "GP":3,
     "PTS/GAME":22.63,
     "PTS/G/$":2.51,
     "PTS/G(ALT)":22.63,
-    "TIERS":1,
+    "BYE WEEK":11,
     "FIELD15":""
   },
   {
     "GID":2553,
     "POS":"RB",
     "NAME":"Peterson, Adrian",
-   "TEAM":"min",
+    "TEAM":"min",
     "OPPONENT":"kan",
     "HOME/AWAY":"H",
     "SALARY":8900,
@@ -314,7 +854,7 @@ var allPos = [
     "PTS/GAME":16.73,
     "PTS/G/$":1.88,
     "PTS/G(ALT)":16.73,
-    "TIERS":1,
+    "BYE WEEK":5,
     "FIELD15":""
   },
   {
@@ -331,7 +871,7 @@ var allPos = [
     "PTS/GAME":9.65,
     "PTS/G/$":1.14,
     "PTS/G(ALT)":9.65,
-    "TIERS":1,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -348,7 +888,7 @@ var allPos = [
     "PTS/GAME":15.98,
     "PTS/G/$":1.9,
     "PTS/G(ALT)":15.98,
-    "TIERS":1,
+    "BYE WEEK":7,
     "FIELD15":""
   },
   {
@@ -365,7 +905,7 @@ var allPos = [
     "PTS/GAME":8.47,
     "PTS/G/$":1.02,
     "PTS/G(ALT)":8.47,
-    "TIERS":4,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -378,11 +918,11 @@ var allPos = [
     "SALARY":8000,
     "SALARY CHANGE":400,
     "POINTS":124.5,
-    "GP":1,
+    "GP":5,
     "PTS/GAME":24.9,
     "PTS/G/$":3.11,
     "PTS/G(ALT)":24.9,
-    "TIERS":1,
+    "BYE WEEK":10,
     "FIELD15":""
   },
   {
@@ -399,7 +939,7 @@ var allPos = [
     "PTS/GAME":14.02,
     "PTS/G/$":1.8,
     "PTS/G(ALT)":14.02,
-    "TIERS":2,
+    "BYE WEEK":11,
     "FIELD15":""
   },
   {
@@ -416,7 +956,7 @@ var allPos = [
     "PTS/GAME":12.5,
     "PTS/G/$":1.64,
     "PTS/G(ALT)":12.5,
-    "TIERS":3,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -433,7 +973,7 @@ var allPos = [
     "PTS/GAME":12.83,
     "PTS/G/$":1.69,
     "PTS/G(ALT)":12.83,
-    "TIERS":3,
+    "BYE WEEK":8,
     "FIELD15":""
   },
   {
@@ -450,7 +990,7 @@ var allPos = [
     "PTS/GAME":17.37,
     "PTS/G/$":2.38,
     "PTS/G(ALT)":17.37,
-    "TIERS":3,
+    "BYE WEEK":5,
     "FIELD15":""
   },
   {
@@ -467,7 +1007,7 @@ var allPos = [
     "PTS/GAME":8.36,
     "PTS/G/$":1.15,
     "PTS/G(ALT)":8.36,
-    "TIERS":2,
+    "BYE WEEK":7,
     "FIELD15":""
   },
   {
@@ -484,7 +1024,7 @@ var allPos = [
     "PTS/GAME":11.92,
     "PTS/G/$":1.66,
     "PTS/G(ALT)":11.92,
-    "TIERS":5,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -501,7 +1041,7 @@ var allPos = [
     "PTS/GAME":17.33,
     "PTS/G/$":2.41,
     "PTS/G(ALT)":17.33,
-    "TIERS":2,
+    "BYE WEEK":4,
     "FIELD15":""
   },
   {
@@ -518,7 +1058,7 @@ var allPos = [
     "PTS/GAME":11.12,
     "PTS/G/$":1.59,
     "PTS/G(ALT)":11.12,
-    "TIERS":3,
+    "BYE WEEK":10,
     "FIELD15":""
   },
   {
@@ -535,7 +1075,7 @@ var allPos = [
     "PTS/GAME":10.8,
     "PTS/G/$":1.54,
     "PTS/G(ALT)":10.8,
-    "TIERS":4,
+    "BYE WEEK":8,
     "FIELD15":""
   },
   {
@@ -552,7 +1092,7 @@ var allPos = [
     "PTS/GAME":12.96,
     "PTS/G/$":1.85,
     "PTS/G(ALT)":12.96,
-    "TIERS":4,
+    "BYE WEEK":10,
     "FIELD15":""
   },
   {
@@ -569,7 +1109,7 @@ var allPos = [
     "PTS/GAME":13.43,
     "PTS/G/$":1.95,
     "PTS/G(ALT)":13.43,
-    "TIERS":6,
+    "BYE WEEK":8,
     "FIELD15":""
   },
   {
@@ -586,7 +1126,7 @@ var allPos = [
     "PTS/GAME":9.98,
     "PTS/G/$":1.47,
     "PTS/G(ALT)":9.98,
-    "TIERS":5,
+    "BYE WEEK":8,
     "FIELD15":""
   },
   {
@@ -603,7 +1143,7 @@ var allPos = [
     "PTS/GAME":12.36,
     "PTS/G/$":1.84,
     "PTS/G(ALT)":12.36,
-    "TIERS":4,
+    "BYE WEEK":7,
     "FIELD15":""
   },
   {
@@ -620,7 +1160,7 @@ var allPos = [
     "PTS/GAME":5.18,
     "PTS/G/$":0.78,
     "PTS/G(ALT)":5.18,
-    "TIERS":6,
+    "BYE WEEK":7,
     "FIELD15":""
   },
   {
@@ -637,7 +1177,7 @@ var allPos = [
     "PTS/GAME":11.83,
     "PTS/G/$":1.82,
     "PTS/G(ALT)":11.83,
-    "TIERS":5,
+    "BYE WEEK":4,
     "FIELD15":""
   },
   {
@@ -654,7 +1194,7 @@ var allPos = [
     "PTS/GAME":7.62,
     "PTS/G/$":1.17,
     "PTS/G(ALT)":7.62,
-    "TIERS":6,
+    "BYE WEEK":10,
     "FIELD15":""
   },
   {
@@ -671,7 +1211,7 @@ var allPos = [
     "PTS/GAME":7.2,
     "PTS/G/$":1.13,
     "PTS/G(ALT)":7.2,
-    "TIERS":7,
+    "BYE WEEK":7,
     "FIELD15":""
   },
   {
@@ -688,7 +1228,7 @@ var allPos = [
     "PTS/GAME":6.7,
     "PTS/G/$":1.05,
     "PTS/G(ALT)":6.7,
-    "TIERS":5,
+    "BYE WEEK":5,
     "FIELD15":""
   },
   {
@@ -705,7 +1245,7 @@ var allPos = [
     "PTS/GAME":9.6,
     "PTS/G/$":1.5,
     "PTS/G(ALT)":9.6,
-    "TIERS":6,
+    "BYE WEEK":7,
     "FIELD15":""
   },
   {
@@ -722,7 +1262,7 @@ var allPos = [
     "PTS/GAME":9.75,
     "PTS/G/$":1.52,
     "PTS/G(ALT)":9.75,
-    "TIERS":9,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -739,7 +1279,7 @@ var allPos = [
     "PTS/GAME":9.34,
     "PTS/G/$":1.48,
     "PTS/G(ALT)":9.34,
-    "TIERS":11,
+    "BYE WEEK":11,
     "FIELD15":""
   },
   {
@@ -756,7 +1296,7 @@ var allPos = [
     "PTS/GAME":10.16,
     "PTS/G/$":1.61,
     "PTS/G(ALT)":10.16,
-    "TIERS":11,
+    "BYE WEEK":11,
     "FIELD15":""
   },
   {
@@ -773,7 +1313,7 @@ var allPos = [
     "PTS/GAME":2.23,
     "PTS/G/$":0.36,
     "PTS/G(ALT)":2.23,
-    "TIERS":9,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -790,7 +1330,7 @@ var allPos = [
     "PTS/GAME":4.9,
     "PTS/G/$":0.8,
     "PTS/G(ALT)":4.9,
-    "TIERS":9,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -807,7 +1347,7 @@ var allPos = [
     "PTS/GAME":6.68,
     "PTS/G/$":1.09,
     "PTS/G(ALT)":6.68,
-    "TIERS":5,
+    "BYE WEEK":5,
     "FIELD15":""
   },
   {
@@ -824,7 +1364,7 @@ var allPos = [
     "PTS/GAME":13.06,
     "PTS/G/$":2.18,
     "PTS/G(ALT)":13.06,
-    "TIERS":10,
+    "BYE WEEK":10,
     "FIELD15":""
   },
   {
@@ -841,7 +1381,7 @@ var allPos = [
     "PTS/GAME":8.4,
     "PTS/G/$":1.42,
     "PTS/G(ALT)":8.4,
-    "TIERS":8,
+    "BYE WEEK":8,
     "FIELD15":""
   },
   {
@@ -858,7 +1398,7 @@ var allPos = [
     "PTS/GAME":7.48,
     "PTS/G/$":1.27,
     "PTS/G(ALT)":7.48,
-    "TIERS":9,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -875,7 +1415,7 @@ var allPos = [
     "PTS/GAME":9.16,
     "PTS/G/$":1.55,
     "PTS/G(ALT)":9.16,
-    "TIERS":11,
+    "BYE WEEK":11,
     "FIELD15":""
   },
   {
@@ -892,7 +1432,7 @@ var allPos = [
     "PTS/GAME":6.24,
     "PTS/G/$":1.08,
     "PTS/G(ALT)":6.24,
-    "TIERS":8,
+    "BYE WEEK":8,
     "FIELD15":""
   },
   {
@@ -909,7 +1449,7 @@ var allPos = [
     "PTS/GAME":9.04,
     "PTS/G/$":1.61,
     "PTS/G(ALT)":9.04,
-    "TIERS":8,
+    "BYE WEEK":8,
     "FIELD15":""
   },
   {
@@ -926,7 +1466,7 @@ var allPos = [
     "PTS/GAME":9.38,
     "PTS/G/$":1.68,
     "PTS/G(ALT)":9.38,
-    "TIERS":11,
+    "BYE WEEK":11,
     "FIELD15":""
   },
   {
@@ -943,7 +1483,7 @@ var allPos = [
     "PTS/GAME":12.2,
     "PTS/G/$":2.18,
     "PTS/G(ALT)":12.2,
-    "TIERS":9,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -960,7 +1500,7 @@ var allPos = [
     "PTS/GAME":12.26,
     "PTS/G/$":2.19,
     "PTS/G(ALT)":12.26,
-    "TIERS":9,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -977,7 +1517,7 @@ var allPos = [
     "PTS/GAME":8.7,
     "PTS/G/$":1.58,
     "PTS/G(ALT)":8.7,
-    "TIERS":8,
+    "BYE WEEK":8,
     "FIELD15":""
   },
   {
@@ -994,7 +1534,7 @@ var allPos = [
     "PTS/GAME":4.93,
     "PTS/G/$":0.9,
     "PTS/G(ALT)":4.93,
-    "TIERS":9,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -1011,7 +1551,7 @@ var allPos = [
     "PTS/GAME":7.23,
     "PTS/G/$":1.31,
     "PTS/G(ALT)":7.23,
-    "TIERS":5,
+    "BYE WEEK":5,
     "FIELD15":""
   },
   {
@@ -1028,7 +1568,7 @@ var allPos = [
     "PTS/GAME":2.8,
     "PTS/G/$":0.51,
     "PTS/G(ALT)":2.8,
-    "TIERS":8,
+    "BYE WEEK":8,
     "FIELD15":""
   },
   {
@@ -1045,7 +1585,7 @@ var allPos = [
     "PTS/GAME":2.08,
     "PTS/G/$":0.38,
     "PTS/G(ALT)":2.08,
-    "TIERS":9,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -1062,7 +1602,7 @@ var allPos = [
     "PTS/GAME":5.48,
     "PTS/G/$":1.01,
     "PTS/G(ALT)":5.48,
-    "TIERS":7,
+    "BYE WEEK":7,
     "FIELD15":""
   },
   {
@@ -1079,7 +1619,7 @@ var allPos = [
     "PTS/GAME":4.02,
     "PTS/G/$":0.74,
     "PTS/G(ALT)":4.02,
-    "TIERS":11,
+    "BYE WEEK":11,
     "FIELD15":""
   },
   {
@@ -1096,7 +1636,7 @@ var allPos = [
     "PTS/GAME":12.75,
     "PTS/G/$":2.36,
     "PTS/G(ALT)":12.75,
-    "TIERS":4,
+    "BYE WEEK":4,
     "FIELD15":""
   },
   {
@@ -1113,7 +1653,7 @@ var allPos = [
     "PTS/GAME":3.4,
     "PTS/G/$":0.63,
     "PTS/G(ALT)":3.4,
-    "TIERS":5,
+    "BYE WEEK":5,
     "FIELD15":""
   },
   {
@@ -1130,7 +1670,7 @@ var allPos = [
     "PTS/GAME":2.2,
     "PTS/G/$":0.41,
     "PTS/G(ALT)":2.2,
-    "TIERS":9,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -1147,7 +1687,7 @@ var allPos = [
     "PTS/GAME":0.6,
     "PTS/G/$":0.11,
     "PTS/G(ALT)":0.6,
-    "TIERS":10,
+    "BYE WEEK":10,
     "FIELD15":""
   },
   {
@@ -1164,7 +1704,7 @@ var allPos = [
     "PTS/GAME":9.12,
     "PTS/G/$":1.72,
     "PTS/G(ALT)":9.12,
-    "TIERS":11,
+    "BYE WEEK":11,
     "FIELD15":""
   },
   {
@@ -1181,7 +1721,7 @@ var allPos = [
     "PTS/GAME":6.95,
     "PTS/G/$":1.31,
     "PTS/G(ALT)":6.95,
-    "TIERS":11,
+    "BYE WEEK":11,
     "FIELD15":""
   },
   {
@@ -1198,7 +1738,7 @@ var allPos = [
     "PTS/GAME":9.18,
     "PTS/G/$":1.73,
     "PTS/G(ALT)":9.18,
-    "TIERS":4,
+    "BYE WEEK":4,
     "FIELD15":""
   },
   {
@@ -1215,7 +1755,7 @@ var allPos = [
     "PTS/GAME":5.83,
     "PTS/G/$":1.1,
     "PTS/G(ALT)":5.83,
-    "TIERS":10,
+    "BYE WEEK":10,
     "FIELD15":""
   },
   {
@@ -1232,7 +1772,7 @@ var allPos = [
     "PTS/GAME":5.55,
     "PTS/G/$":1.07,
     "PTS/G(ALT)":5.55,
-    "TIERS":4,
+    "BYE WEEK":4,
     "FIELD15":""
   },
   {
@@ -1249,7 +1789,7 @@ var allPos = [
     "PTS/GAME":3.2,
     "PTS/G/$":0.63,
     "PTS/G(ALT)":3.2,
-    "TIERS":8,
+    "BYE WEEK":8,
     "FIELD15":""
   },
   {
@@ -1266,7 +1806,7 @@ var allPos = [
     "PTS/GAME":7.54,
     "PTS/G/$":1.48,
     "PTS/G(ALT)":7.54,
-    "TIERS":8,
+    "BYE WEEK":8,
     "FIELD15":""
   },
   {
@@ -1283,7 +1823,7 @@ var allPos = [
     "PTS/GAME":0,
     "PTS/G/$":0,
     "PTS/G(ALT)":0,
-    "TIERS":11,
+    "BYE WEEK":11,
     "FIELD15":""
   },
   {
@@ -1300,7 +1840,7 @@ var allPos = [
     "PTS/GAME":2.8,
     "PTS/G/$":0.55,
     "PTS/G(ALT)":2.8,
-    "TIERS":9,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -1317,7 +1857,7 @@ var allPos = [
     "PTS/GAME":5.3,
     "PTS/G/$":1.06,
     "PTS/G(ALT)":5.3,
-    "TIERS":5,
+    "BYE WEEK":5,
     "FIELD15":""
   },
   {
@@ -1334,7 +1874,7 @@ var allPos = [
     "PTS/GAME":9.76,
     "PTS/G/$":1.95,
     "PTS/G(ALT)":9.76,
-    "TIERS":9,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -1351,7 +1891,7 @@ var allPos = [
     "PTS/GAME":1.7,
     "PTS/G/$":0.34,
     "PTS/G(ALT)":1.7,
-    "TIERS":5,
+    "BYE WEEK":5,
     "FIELD15":""
   },
   {
@@ -1368,7 +1908,7 @@ var allPos = [
     "PTS/GAME":2.45,
     "PTS/G/$":0.49,
     "PTS/G(ALT)":2.45,
-    "TIERS":5,
+    "BYE WEEK":5,
     "FIELD15":""
   },
   {
@@ -1385,7 +1925,7 @@ var allPos = [
     "PTS/GAME":5.4,
     "PTS/G/$":1.08,
     "PTS/G(ALT)":5.4,
-    "TIERS":4,
+    "BYE WEEK":4,
     "FIELD15":""
   },
   {
@@ -1402,7 +1942,7 @@ var allPos = [
     "PTS/GAME":6.46,
     "PTS/G/$":1.29,
     "PTS/G(ALT)":6.46,
-    "TIERS":9,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -1419,7 +1959,7 @@ var allPos = [
     "PTS/GAME":1.7,
     "PTS/G/$":0.34,
     "PTS/G(ALT)":1.7,
-    "TIERS":7,
+    "BYE WEEK":7,
     "FIELD15":""
   },
   {
@@ -1436,7 +1976,7 @@ var allPos = [
     "PTS/GAME":0.33,
     "PTS/G/$":0.07,
     "PTS/G(ALT)":0.33,
-    "TIERS":8,
+    "BYE WEEK":8,
     "FIELD15":""
   },
   {
@@ -1453,7 +1993,7 @@ var allPos = [
     "PTS/GAME":1.3,
     "PTS/G/$":0.27,
     "PTS/G(ALT)":1.3,
-    "TIERS":4,
+    "BYE WEEK":4,
     "FIELD15":""
   },
   {
@@ -1470,7 +2010,7 @@ var allPos = [
     "PTS/GAME":0.55,
     "PTS/G/$":0.11,
     "PTS/G(ALT)":0.55,
-    "TIERS":4,
+    "BYE WEEK":4,
     "FIELD15":""
   },
   {
@@ -1487,7 +2027,7 @@ var allPos = [
     "PTS/GAME":1.6,
     "PTS/G/$":0.33,
     "PTS/G(ALT)":1.6,
-    "TIERS":7,
+    "BYE WEEK":7,
     "FIELD15":""
   },
   {
@@ -1504,7 +2044,7 @@ var allPos = [
     "PTS/GAME":5.37,
     "PTS/G/$":1.1,
     "PTS/G(ALT)":5.37,
-    "TIERS":9,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -1521,7 +2061,7 @@ var allPos = [
     "PTS/GAME":1.55,
     "PTS/G/$":0.32,
     "PTS/G(ALT)":1.55,
-    "TIERS":5,
+    "BYE WEEK":5,
     "FIELD15":""
   },
   {
@@ -1538,7 +2078,7 @@ var allPos = [
     "PTS/GAME":1.64,
     "PTS/G/$":0.33,
     "PTS/G(ALT)":1.64,
-    "TIERS":10,
+    "BYE WEEK":10,
     "FIELD15":""
   },
   {
@@ -1555,7 +2095,7 @@ var allPos = [
     "PTS/GAME":3.35,
     "PTS/G/$":0.7,
     "PTS/G(ALT)":3.35,
-    "TIERS":5,
+    "BYE WEEK":5,
     "FIELD15":""
   },
   {
@@ -1572,7 +2112,7 @@ var allPos = [
     "PTS/GAME":5.1,
     "PTS/G/$":1.06,
     "PTS/G(ALT)":5.1,
-    "TIERS":9,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -1589,7 +2129,7 @@ var allPos = [
     "PTS/GAME":7.6,
     "PTS/G/$":1.58,
     "PTS/G(ALT)":7.6,
-    "TIERS":11,
+    "BYE WEEK":11,
     "FIELD15":""
   },
   {
@@ -1606,7 +2146,7 @@ var allPos = [
     "PTS/GAME":0.55,
     "PTS/G/$":0.12,
     "PTS/G(ALT)":0.55,
-    "TIERS":11,
+    "BYE WEEK":11,
     "FIELD15":""
   },
   {
@@ -1623,7 +2163,7 @@ var allPos = [
     "PTS/GAME":1.95,
     "PTS/G/$":0.41,
     "PTS/G(ALT)":1.95,
-    "TIERS":5,
+    "BYE WEEK":5,
     "FIELD15":""
   },
   {
@@ -1640,7 +2180,7 @@ var allPos = [
     "PTS/GAME":1.3,
     "PTS/G/$":0.28,
     "PTS/G(ALT)":1.3,
-    "TIERS":5,
+    "BYE WEEK":5,
     "FIELD15":""
   },
   {
@@ -1657,7 +2197,7 @@ var allPos = [
     "PTS/GAME":1.35,
     "PTS/G/$":0.29,
     "PTS/G(ALT)":1.35,
-    "TIERS":10,
+    "BYE WEEK":10,
     "FIELD15":""
   },
   {
@@ -1674,7 +2214,7 @@ var allPos = [
     "PTS/GAME":2.58,
     "PTS/G/$":0.55,
     "PTS/G(ALT)":2.58,
-    "TIERS":7,
+    "BYE WEEK":7,
     "FIELD15":""
   },
   {
@@ -1691,7 +2231,7 @@ var allPos = [
     "PTS/GAME":3.6,
     "PTS/G/$":0.78,
     "PTS/G(ALT)":3.6,
-    "TIERS":8,
+    "BYE WEEK":8,
     "FIELD15":""
   },
   {
@@ -1708,7 +2248,7 @@ var allPos = [
     "PTS/GAME":3.85,
     "PTS/G/$":0.86,
     "PTS/G(ALT)":3.85,
-    "TIERS":7,
+    "BYE WEEK":7,
     "FIELD15":""
   },
   {
@@ -1725,7 +2265,7 @@ var allPos = [
     "PTS/GAME":0.23,
     "PTS/G/$":0.05,
     "PTS/G(ALT)":0.23,
-    "TIERS":8,
+    "BYE WEEK":8,
     "FIELD15":""
   },
   {
@@ -1742,7 +2282,7 @@ var allPos = [
     "PTS/GAME":1.1,
     "PTS/G/$":0.24,
     "PTS/G(ALT)":1.1,
-    "TIERS":10,
+    "BYE WEEK":10,
     "FIELD15":""
   },
   {
@@ -1759,7 +2299,7 @@ var allPos = [
     "PTS/GAME":1.12,
     "PTS/G/$":0.25,
     "PTS/G(ALT)":1.12,
-    "TIERS":7,
+    "BYE WEEK":7,
     "FIELD15":""
   },
   {
@@ -1776,7 +2316,7 @@ var allPos = [
     "PTS/GAME":1.97,
     "PTS/G/$":0.44,
     "PTS/G(ALT)":1.97,
-    "TIERS":6,
+    "BYE WEEK":6,
     "FIELD15":""
   },
   {
@@ -1793,7 +2333,7 @@ var allPos = [
     "PTS/GAME":2.25,
     "PTS/G/$":0.5,
     "PTS/G(ALT)":2.25,
-    "TIERS":10,
+    "BYE WEEK":10,
     "FIELD15":""
   },
   {
@@ -1810,7 +2350,7 @@ var allPos = [
     "PTS/GAME":0,
     "PTS/G/$":0,
     "PTS/G(ALT)":0,
-    "TIERS":5,
+    "BYE WEEK":5,
     "FIELD15":""
   },
   {
@@ -1827,7 +2367,7 @@ var allPos = [
     "PTS/GAME":0.83,
     "PTS/G/$":0.18,
     "PTS/G(ALT)":0.83,
-    "TIERS":8,
+    "BYE WEEK":8,
     "FIELD15":""
   },
   {
@@ -1844,7 +2384,7 @@ var allPos = [
     "PTS/GAME":0.7,
     "PTS/G/$":0.16,
     "PTS/G(ALT)":0.7,
-    "TIERS":4,
+    "BYE WEEK":4,
     "FIELD15":""
   },
   {
@@ -1861,7 +2401,7 @@ var allPos = [
     "PTS/GAME":0.53,
     "PTS/G/$":0.12,
     "PTS/G(ALT)":0.53,
-    "TIERS":11,
+    "BYE WEEK":11,
     "FIELD15":""
   },
   {
@@ -1878,7 +2418,7 @@ var allPos = [
     "PTS/GAME":5.67,
     "PTS/G/$":1.26,
     "PTS/G(ALT)":5.67,
-    "TIERS":9,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -1895,7 +2435,7 @@ var allPos = [
     "PTS/GAME":0,
     "PTS/G/$":0,
     "PTS/G(ALT)":0,
-    "TIERS":8,
+    "BYE WEEK":8,
     "FIELD15":""
   },
   {
@@ -1912,7 +2452,7 @@ var allPos = [
     "PTS/GAME":1.3,
     "PTS/G/$":0.29,
     "PTS/G(ALT)":1.3,
-    "TIERS":7,
+    "BYE WEEK":7,
     "FIELD15":""
   },
   {
@@ -1929,7 +2469,7 @@ var allPos = [
     "PTS/GAME":1.25,
     "PTS/G/$":0.28,
     "PTS/G(ALT)":1.25,
-    "TIERS":9,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -1946,7 +2486,7 @@ var allPos = [
     "PTS/GAME":3.76,
     "PTS/G/$":0.84,
     "PTS/G(ALT)":3.76,
-    "TIERS":9,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -1963,7 +2503,7 @@ var allPos = [
     "PTS/GAME":0.35,
     "PTS/G/$":0.08,
     "PTS/G(ALT)":0.35,
-    "TIERS":9,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -1980,7 +2520,7 @@ var allPos = [
     "PTS/GAME":0.2,
     "PTS/G/$":0.04,
     "PTS/G(ALT)":0.2,
-    "TIERS":5,
+    "BYE WEEK":5,
     "FIELD15":""
   },
   {
@@ -1997,7 +2537,7 @@ var allPos = [
     "PTS/GAME":0.1,
     "PTS/G/$":0.02,
     "PTS/G(ALT)":0.1,
-    "TIERS":8,
+    "BYE WEEK":8,
     "FIELD15":""
   },
   {
@@ -2014,7 +2554,7 @@ var allPos = [
     "PTS/GAME":2.2,
     "PTS/G/$":0.49,
     "PTS/G(ALT)":2.2,
-    "TIERS":10,
+    "BYE WEEK":10,
     "FIELD15":""
   },
   {
@@ -2031,7 +2571,7 @@ var allPos = [
     "PTS/GAME":5.63,
     "PTS/G/$":1.25,
     "PTS/G(ALT)":5.63,
-    "TIERS":10,
+    "BYE WEEK":10,
     "FIELD15":""
   },
   {
@@ -2048,7 +2588,7 @@ var allPos = [
     "PTS/GAME":1.2,
     "PTS/G/$":0.27,
     "PTS/G(ALT)":1.2,
-    "TIERS":11,
+    "BYE WEEK":11,
     "FIELD15":""
   },
   {
@@ -2065,7 +2605,7 @@ var allPos = [
     "PTS/GAME":0.34,
     "PTS/G/$":0.08,
     "PTS/G(ALT)":0.34,
-    "TIERS":10,
+    "BYE WEEK":10,
     "FIELD15":""
   },
   {
@@ -2082,7 +2622,7 @@ var allPos = [
     "PTS/GAME":7.02,
     "PTS/G/$":0,
     "PTS/G(ALT)":7.02,
-    "TIERS":6,
+    "BYE WEEK":6,
     "FIELD15":""
   },
   {
@@ -2099,7 +2639,7 @@ var allPos = [
     "PTS/GAME":18.12,
     "PTS/G/$":0,
     "PTS/G(ALT)":18.12,
-    "TIERS":9,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -2116,7 +2656,7 @@ var allPos = [
     "PTS/GAME":8.38,
     "PTS/G/$":0,
     "PTS/G(ALT)":8.38,
-    "TIERS":6,
+    "BYE WEEK":6,
     "FIELD15":""
   },
   {
@@ -2133,7 +2673,7 @@ var allPos = [
     "PTS/GAME":5.17,
     "PTS/G/$":0,
     "PTS/G(ALT)":5.17,
-    "TIERS":6,
+    "BYE WEEK":6,
     "FIELD15":""
   },
   {
@@ -2150,7 +2690,7 @@ var allPos = [
     "PTS/GAME":15.48,
     "PTS/G/$":0,
     "PTS/G(ALT)":15.48,
-    "TIERS":6,
+    "BYE WEEK":6,
     "FIELD15":""
   },
   {
@@ -2167,7 +2707,7 @@ var allPos = [
     "PTS/GAME":-1.7,
     "PTS/G/$":0,
     "PTS/G(ALT)":-1.7,
-    "TIERS":6,
+    "BYE WEEK":6,
     "FIELD15":""
   },
   {
@@ -2184,7 +2724,7 @@ var allPos = [
     "PTS/GAME":0.64,
     "PTS/G/$":0,
     "PTS/G(ALT)":0.64,
-    "TIERS":6,
+    "BYE WEEK":6,
     "FIELD15":""
   },
   {
@@ -2201,7 +2741,7 @@ var allPos = [
     "PTS/GAME":0,
     "PTS/G/$":0,
     "PTS/G(ALT)":0,
-    "TIERS":6,
+    "BYE WEEK":6,
     "FIELD15":""
   },
   {
@@ -2218,7 +2758,7 @@ var allPos = [
     "PTS/GAME":9.68,
     "PTS/G/$":0,
     "PTS/G(ALT)":9.68,
-    "TIERS":6,
+    "BYE WEEK":6,
     "FIELD15":""
   },
   {
@@ -2235,7 +2775,7 @@ var allPos = [
     "PTS/GAME":0.25,
     "PTS/G/$":0,
     "PTS/G(ALT)":0.25,
-    "TIERS":6,
+    "BYE WEEK":6,
     "FIELD15":""
   },
   {
@@ -2252,7 +2792,7 @@ var allPos = [
     "PTS/GAME":12.38,
     "PTS/G/$":0,
     "PTS/G(ALT)":12.38,
-    "TIERS":6,
+    "BYE WEEK":6,
     "FIELD15":""
   },
   {
@@ -2269,7 +2809,7 @@ var allPos = [
     "PTS/GAME":13.32,
     "PTS/G/$":0,
     "PTS/G(ALT)":13.32,
-    "TIERS":6,
+    "BYE WEEK":6,
     "FIELD15":""
   },
   {
@@ -2286,7 +2826,7 @@ var allPos = [
     "PTS/GAME":5.62,
     "PTS/G/$":0,
     "PTS/G(ALT)":5.62,
-    "TIERS":6,
+    "BYE WEEK":6,
     "FIELD15":""
   },
   {
@@ -2303,7 +2843,7 @@ var allPos = [
     "PTS/GAME":10.36,
     "PTS/G/$":0,
     "PTS/G(ALT)":10.36,
-    "TIERS":6,
+    "BYE WEEK":6,
     "FIELD15":""
   },
   {
@@ -2320,7 +2860,7 @@ var allPos = [
     "PTS/GAME":2.08,
     "PTS/G/$":0,
     "PTS/G(ALT)":2.08,
-    "TIERS":6,
+    "BYE WEEK":6,
     "FIELD15":""
   },
   {
@@ -2337,10 +2877,10 @@ var allPos = [
     "PTS/GAME":11.63,
     "PTS/G/$":0,
     "PTS/G(ALT)":11.63,
-    "TIERS":6,
+    "BYE WEEK":6,
     "FIELD15":""
   }
-],
+]
 
 //end RB
 
@@ -2361,7 +2901,7 @@ var allPos = [
     "PTS/GAME":21.2,
     "PTS/G/$":2.3,
     "PTS/G(ALT)":21.2,
-    "TIERS":10,
+    "BYE WEEK":10,
     "FIELD15":""
   },
   {
@@ -2378,7 +2918,7 @@ var allPos = [
     "PTS/GAME":15.32,
     "PTS/G/$":1.68,
     "PTS/G(ALT)":15.32,
-    "TIERS":11,
+    "BYE WEEK":11,
     "FIELD15":""
   },
   {
@@ -2395,7 +2935,7 @@ var allPos = [
     "PTS/GAME":16.96,
     "PTS/G/$":1.97,
     "PTS/G(ALT)":16.96,
-    "TIERS":11,
+    "BYE WEEK":11,
     "FIELD15":""
   },
   {
@@ -2412,7 +2952,7 @@ var allPos = [
     "PTS/GAME":19.76,
     "PTS/G/$":2.32,
     "PTS/G(ALT)":19.76,
-    "TIERS":9,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -2429,7 +2969,7 @@ var allPos = [
     "PTS/GAME":12.92,
     "PTS/G/$":1.56,
     "PTS/G(ALT)":12.92,
-    "TIERS":7,
+    "BYE WEEK":7,
     "FIELD15":""
   },
   {
@@ -2446,7 +2986,7 @@ var allPos = [
     "PTS/GAME":10.44,
     "PTS/G/$":1.27,
     "PTS/G(ALT)":10.44,
-    "TIERS":9,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -2463,7 +3003,7 @@ var allPos = [
     "PTS/GAME":16.6,
     "PTS/G/$":2.05,
     "PTS/G(ALT)":16.6,
-    "TIERS":7,
+    "BYE WEEK":7,
     "FIELD15":""
   },
   {
@@ -2480,7 +3020,7 @@ var allPos = [
     "PTS/GAME":14.08,
     "PTS/G/$":1.74,
     "PTS/G(ALT)":14.08,
-    "TIERS":7,
+    "BYE WEEK":7,
     "FIELD15":""
   },
   {
@@ -2497,7 +3037,7 @@ var allPos = [
     "PTS/GAME":17.75,
     "PTS/G/$":2.22,
     "PTS/G(ALT)":17.75,
-    "TIERS":5,
+    "BYE WEEK":5,
     "FIELD15":""
   },
   {
@@ -2514,7 +3054,7 @@ var allPos = [
     "PTS/GAME":19.25,
     "PTS/G/$":2.44,
     "PTS/G(ALT)":19.25,
-    "TIERS":4,
+    "BYE WEEK":4,
     "FIELD15":""
   },
   {
@@ -2531,7 +3071,7 @@ var allPos = [
     "PTS/GAME":14.16,
     "PTS/G/$":1.79,
     "PTS/G(ALT)":14.16,
-    "TIERS":7,
+    "BYE WEEK":7,
     "FIELD15":""
   },
   {
@@ -2548,7 +3088,7 @@ var allPos = [
     "PTS/GAME":15.98,
     "PTS/G/$":2.08,
     "PTS/G(ALT)":15.98,
-    "TIERS":10,
+    "BYE WEEK":10,
     "FIELD15":""
   },
   {
@@ -2565,7 +3105,7 @@ var allPos = [
     "PTS/GAME":20.1,
     "PTS/G/$":2.68,
     "PTS/G(ALT)":20.1,
-    "TIERS":9,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -2582,7 +3122,7 @@ var allPos = [
     "PTS/GAME":10.34,
     "PTS/G/$":1.4,
     "PTS/G(ALT)":10.34,
-    "TIERS":10,
+    "BYE WEEK":10,
     "FIELD15":""
   },
   {
@@ -2599,7 +3139,7 @@ var allPos = [
     "PTS/GAME":10.3,
     "PTS/G/$":1.39,
     "PTS/G(ALT)":10.3,
-    "TIERS":7,
+    "BYE WEEK":7,
     "FIELD15":""
   },
   {
@@ -2616,7 +3156,7 @@ var allPos = [
     "PTS/GAME":13.45,
     "PTS/G/$":1.84,
     "PTS/G(ALT)":13.45,
-    "TIERS":5,
+    "BYE WEEK":5,
     "FIELD15":""
   },
   {
@@ -2633,7 +3173,7 @@ var allPos = [
     "PTS/GAME":14.36,
     "PTS/G/$":1.99,
     "PTS/G(ALT)":14.36,
-    "TIERS":9,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -2650,7 +3190,7 @@ var allPos = [
     "PTS/GAME":10.14,
     "PTS/G/$":1.45,
     "PTS/G(ALT)":10.14,
-    "TIERS":11,
+    "BYE WEEK":11,
     "FIELD15":""
   },
   {
@@ -2667,7 +3207,7 @@ var allPos = [
     "PTS/GAME":7.76,
     "PTS/G/$":1.12,
     "PTS/G(ALT)":7.76,
-    "TIERS":9,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -2684,7 +3224,7 @@ var allPos = [
     "PTS/GAME":15.95,
     "PTS/G/$":2.38,
     "PTS/G(ALT)":15.95,
-    "TIERS":9,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -2701,7 +3241,7 @@ var allPos = [
     "PTS/GAME":15.04,
     "PTS/G/$":2.24,
     "PTS/G(ALT)":15.04,
-    "TIERS":8,
+    "BYE WEEK":8,
     "FIELD15":""
   },
   {
@@ -2718,7 +3258,7 @@ var allPos = [
     "PTS/GAME":15.78,
     "PTS/G/$":2.39,
     "PTS/G(ALT)":15.78,
-    "TIERS":7,
+    "BYE WEEK":7,
     "FIELD15":""
   },
   {
@@ -2735,7 +3275,7 @@ var allPos = [
     "PTS/GAME":10.7,
     "PTS/G/$":1.62,
     "PTS/G(ALT)":10.7,
-    "TIERS":8,
+    "BYE WEEK":8,
     "FIELD15":""
   },
   {
@@ -2752,7 +3292,7 @@ var allPos = [
     "PTS/GAME":9.32,
     "PTS/G/$":1.43,
     "PTS/G(ALT)":9.32,
-    "TIERS":10,
+    "BYE WEEK":10,
     "FIELD15":""
   },
   {
@@ -2769,7 +3309,7 @@ var allPos = [
     "PTS/GAME":14.5,
     "PTS/G/$":2.23,
     "PTS/G(ALT)":14.5,
-    "TIERS":8,
+    "BYE WEEK":8,
     "FIELD15":""
   },
   {
@@ -2786,7 +3326,7 @@ var allPos = [
     "PTS/GAME":16.02,
     "PTS/G/$":2.54,
     "PTS/G(ALT)":16.02,
-    "TIERS":11,
+    "BYE WEEK":11,
     "FIELD15":""
   },
   {
@@ -2803,7 +3343,7 @@ var allPos = [
     "PTS/GAME":13.58,
     "PTS/G/$":2.15,
     "PTS/G(ALT)":13.58,
-    "TIERS":5,
+    "BYE WEEK":5,
     "FIELD15":""
   },
   {
@@ -2820,7 +3360,7 @@ var allPos = [
     "PTS/GAME":6.47,
     "PTS/G/$":1.03,
     "PTS/G(ALT)":6.47,
-    "TIERS":8,
+    "BYE WEEK":8,
     "FIELD15":""
   },
   {
@@ -2837,7 +3377,7 @@ var allPos = [
     "PTS/GAME":7.24,
     "PTS/G/$":1.17,
     "PTS/G(ALT)":7.24,
-    "TIERS":10,
+    "BYE WEEK":10,
     "FIELD15":""
   },
   {
@@ -2854,7 +3394,7 @@ var allPos = [
     "PTS/GAME":10.62,
     "PTS/G/$":1.71,
     "PTS/G(ALT)":10.62,
-    "TIERS":11,
+    "BYE WEEK":11,
     "FIELD15":""
   },
   {
@@ -2871,7 +3411,7 @@ var allPos = [
     "PTS/GAME":11.56,
     "PTS/G/$":1.86,
     "PTS/G(ALT)":11.56,
-    "TIERS":10,
+    "BYE WEEK":10,
     "FIELD15":""
   },
   {
@@ -2888,7 +3428,7 @@ var allPos = [
     "PTS/GAME":14.33,
     "PTS/G/$":2.35,
     "PTS/G(ALT)":14.33,
-    "TIERS":5,
+    "BYE WEEK":5,
     "FIELD15":""
   },
   {
@@ -2905,7 +3445,7 @@ var allPos = [
     "PTS/GAME":10.98,
     "PTS/G/$":1.8,
     "PTS/G(ALT)":10.98,
-    "TIERS":9,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -2922,7 +3462,7 @@ var allPos = [
     "PTS/GAME":6.26,
     "PTS/G/$":1.04,
     "PTS/G(ALT)":6.26,
-    "TIERS":10,
+    "BYE WEEK":10,
     "FIELD15":""
   },
   {
@@ -2939,7 +3479,7 @@ var allPos = [
     "PTS/GAME":10.44,
     "PTS/G/$":1.74,
     "PTS/G(ALT)":10.44,
-    "TIERS":8,
+    "BYE WEEK":8,
     "FIELD15":""
   },
   {
@@ -2956,7 +3496,7 @@ var allPos = [
     "PTS/GAME":7.16,
     "PTS/G/$":1.19,
     "PTS/G(ALT)":7.16,
-    "TIERS":9,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -2973,7 +3513,7 @@ var allPos = [
     "PTS/GAME":9.28,
     "PTS/G/$":1.6,
     "PTS/G(ALT)":9.28,
-    "TIERS":10,
+    "BYE WEEK":10,
     "FIELD15":""
   },
   {
@@ -2990,7 +3530,7 @@ var allPos = [
     "PTS/GAME":10.06,
     "PTS/G/$":1.73,
     "PTS/G(ALT)":10.06,
-    "TIERS":9,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -3007,7 +3547,7 @@ var allPos = [
     "PTS/GAME":11.4,
     "PTS/G/$":1.97,
     "PTS/G(ALT)":11.4,
-    "TIERS":4,
+    "BYE WEEK":4,
     "FIELD15":""
   },
   {
@@ -3024,7 +3564,7 @@ var allPos = [
     "PTS/GAME":6.4,
     "PTS/G/$":1.1,
     "PTS/G(ALT)":6.4,
-    "TIERS":7,
+    "BYE WEEK":7,
     "FIELD15":""
   },
   {
@@ -3041,7 +3581,7 @@ var allPos = [
     "PTS/GAME":10.38,
     "PTS/G/$":1.82,
     "PTS/G(ALT)":10.38,
-    "TIERS":10,
+    "BYE WEEK":10,
     "FIELD15":""
   },
   {
@@ -3058,7 +3598,7 @@ var allPos = [
     "PTS/GAME":0,
     "PTS/G/$":0,
     "PTS/G(ALT)":0,
-    "TIERS":8,
+    "BYE WEEK":8,
     "FIELD15":""
   },
   {
@@ -3075,7 +3615,7 @@ var allPos = [
     "PTS/GAME":8.64,
     "PTS/G/$":1.52,
     "PTS/G(ALT)":8.64,
-    "TIERS":11,
+    "BYE WEEK":11,
     "FIELD15":""
   },
   {
@@ -3092,7 +3632,7 @@ var allPos = [
     "PTS/GAME":8.48,
     "PTS/G/$":1.49,
     "PTS/G(ALT)":8.48,
-    "TIERS":9,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -3109,7 +3649,7 @@ var allPos = [
     "PTS/GAME":11.15,
     "PTS/G/$":2.03,
     "PTS/G(ALT)":11.15,
-    "TIERS":5,
+    "BYE WEEK":5,
     "FIELD15":""
   },
   {
@@ -3126,7 +3666,7 @@ var allPos = [
     "PTS/GAME":4.57,
     "PTS/G/$":0.83,
     "PTS/G(ALT)":4.57,
-    "TIERS":7,
+    "BYE WEEK":7,
     "FIELD15":""
   },
   {
@@ -3143,7 +3683,7 @@ var allPos = [
     "PTS/GAME":6.82,
     "PTS/G/$":1.24,
     "PTS/G(ALT)":6.82,
-    "TIERS":8,
+    "BYE WEEK":8,
     "FIELD15":""
   },
   {
@@ -3160,7 +3700,7 @@ var allPos = [
     "PTS/GAME":6.6,
     "PTS/G/$":1.22,
     "PTS/G(ALT)":6.6,
-    "TIERS":10,
+    "BYE WEEK":10,
     "FIELD15":""
   },
   {
@@ -3177,7 +3717,7 @@ var allPos = [
     "PTS/GAME":3.88,
     "PTS/G/$":0.72,
     "PTS/G(ALT)":3.88,
-    "TIERS":10,
+    "BYE WEEK":10,
     "FIELD15":""
   },
   {
@@ -3194,7 +3734,7 @@ var allPos = [
     "PTS/GAME":9.83,
     "PTS/G/$":1.82,
     "PTS/G(ALT)":9.83,
-    "TIERS":5,
+    "BYE WEEK":5,
     "FIELD15":""
   },
   {
@@ -3211,7 +3751,7 @@ var allPos = [
     "PTS/GAME":7.38,
     "PTS/G/$":1.37,
     "PTS/G(ALT)":7.38,
-    "TIERS":7,
+    "BYE WEEK":7,
     "FIELD15":""
   },
   {
@@ -3228,7 +3768,7 @@ var allPos = [
     "PTS/GAME":6.75,
     "PTS/G/$":1.27,
     "PTS/G(ALT)":6.75,
-    "TIERS":7,
+    "BYE WEEK":7,
     "FIELD15":""
   },
   {
@@ -3245,7 +3785,7 @@ var allPos = [
     "PTS/GAME":5.73,
     "PTS/G/$":1.08,
     "PTS/G(ALT)":5.73,
-    "TIERS":8,
+    "BYE WEEK":8,
     "FIELD15":""
   },
   {
@@ -3262,7 +3802,7 @@ var allPos = [
     "PTS/GAME":4.98,
     "PTS/G/$":0.94,
     "PTS/G(ALT)":4.98,
-    "TIERS":11,
+    "BYE WEEK":11,
     "FIELD15":""
   },
   {
@@ -3279,7 +3819,7 @@ var allPos = [
     "PTS/GAME":8.6,
     "PTS/G/$":1.62,
     "PTS/G(ALT)":8.6,
-    "TIERS":7,
+    "BYE WEEK":7,
     "FIELD15":""
   },
   {
@@ -3296,7 +3836,7 @@ var allPos = [
     "PTS/GAME":7.23,
     "PTS/G/$":1.36,
     "PTS/G(ALT)":7.23,
-    "TIERS":8,
+    "BYE WEEK":8,
     "FIELD15":""
   },
   {
@@ -3313,7 +3853,7 @@ var allPos = [
     "PTS/GAME":18.3,
     "PTS/G/$":3.45,
     "PTS/G(ALT)":18.3,
-    "TIERS":9,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -3330,7 +3870,7 @@ var allPos = [
     "PTS/GAME":3.06,
     "PTS/G/$":0.59,
     "PTS/G(ALT)":3.06,
-    "TIERS":8,
+    "BYE WEEK":8,
     "FIELD15":""
   },
   {
@@ -3347,7 +3887,7 @@ var allPos = [
     "PTS/GAME":4.26,
     "PTS/G/$":0.82,
     "PTS/G(ALT)":4.26,
-    "TIERS":10,
+    "BYE WEEK":10,
     "FIELD15":""
   },
   {
@@ -3364,7 +3904,7 @@ var allPos = [
     "PTS/GAME":5.8,
     "PTS/G/$":1.14,
     "PTS/G(ALT)":5.8,
-    "TIERS":11,
+    "BYE WEEK":11,
     "FIELD15":""
   },
   {
@@ -3381,7 +3921,7 @@ var allPos = [
     "PTS/GAME":5.15,
     "PTS/G/$":1.01,
     "PTS/G(ALT)":5.15,
-    "TIERS":10,
+    "BYE WEEK":10,
     "FIELD15":""
   },
   {
@@ -3398,7 +3938,7 @@ var allPos = [
     "PTS/GAME":8.24,
     "PTS/G/$":1.62,
     "PTS/G(ALT)":8.24,
-    "TIERS":8,
+    "BYE WEEK":8,
     "FIELD15":""
   },
   {
@@ -3415,7 +3955,7 @@ var allPos = [
     "PTS/GAME":5.98,
     "PTS/G/$":1.17,
     "PTS/G(ALT)":5.98,
-    "TIERS":9,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -3432,7 +3972,7 @@ var allPos = [
     "PTS/GAME":8.08,
     "PTS/G/$":1.62,
     "PTS/G(ALT)":8.08,
-    "TIERS":8,
+    "BYE WEEK":8,
     "FIELD15":""
   },
   {
@@ -3449,7 +3989,7 @@ var allPos = [
     "PTS/GAME":3.46,
     "PTS/G/$":0.69,
     "PTS/G(ALT)":3.46,
-    "TIERS":11,
+    "BYE WEEK":11,
     "FIELD15":""
   },
   {
@@ -3466,7 +4006,7 @@ var allPos = [
     "PTS/GAME":9.65,
     "PTS/G/$":1.93,
     "PTS/G(ALT)":9.65,
-    "TIERS":9,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -3483,7 +4023,7 @@ var allPos = [
     "PTS/GAME":6.12,
     "PTS/G/$":1.22,
     "PTS/G(ALT)":6.12,
-    "TIERS":7,
+    "BYE WEEK":7,
     "FIELD15":""
   },
   {
@@ -3500,7 +4040,7 @@ var allPos = [
     "PTS/GAME":4.87,
     "PTS/G/$":0.97,
     "PTS/G(ALT)":4.87,
-    "TIERS":4,
+    "BYE WEEK":4,
     "FIELD15":""
   },
   {
@@ -3517,7 +4057,7 @@ var allPos = [
     "PTS/GAME":5.03,
     "PTS/G/$":1.01,
     "PTS/G(ALT)":5.03,
-    "TIERS":5,
+    "BYE WEEK":5,
     "FIELD15":""
   },
   {
@@ -3534,7 +4074,7 @@ var allPos = [
     "PTS/GAME":2.5,
     "PTS/G/$":0.5,
     "PTS/G(ALT)":2.5,
-    "TIERS":8,
+    "BYE WEEK":8,
     "FIELD15":""
   },
   {
@@ -3551,7 +4091,7 @@ var allPos = [
     "PTS/GAME":3.45,
     "PTS/G/$":0.69,
     "PTS/G(ALT)":3.45,
-    "TIERS":5,
+    "BYE WEEK":5,
     "FIELD15":""
   },
   {
@@ -3568,7 +4108,7 @@ var allPos = [
     "PTS/GAME":3.8,
     "PTS/G/$":0.76,
     "PTS/G(ALT)":3.8,
-    "TIERS":9,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -3585,7 +4125,7 @@ var allPos = [
     "PTS/GAME":9.17,
     "PTS/G/$":1.87,
     "PTS/G(ALT)":9.17,
-    "TIERS":9,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -3602,7 +4142,7 @@ var allPos = [
     "PTS/GAME":0,
     "PTS/G/$":0,
     "PTS/G(ALT)":0,
-    "TIERS":11,
+    "BYE WEEK":11,
     "FIELD15":""
   },
   {
@@ -3619,7 +4159,7 @@ var allPos = [
     "PTS/GAME":8.28,
     "PTS/G/$":1.69,
     "PTS/G(ALT)":8.28,
-    "TIERS":11,
+    "BYE WEEK":11,
     "FIELD15":""
   },
   {
@@ -3636,7 +4176,7 @@ var allPos = [
     "PTS/GAME":4.1,
     "PTS/G/$":0.84,
     "PTS/G(ALT)":4.1,
-    "TIERS":5,
+    "BYE WEEK":5,
     "FIELD15":""
   },
   {
@@ -3653,7 +4193,7 @@ var allPos = [
     "PTS/GAME":2.88,
     "PTS/G/$":0.59,
     "PTS/G(ALT)":2.88,
-    "TIERS":9,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -3670,7 +4210,7 @@ var allPos = [
     "PTS/GAME":4.2,
     "PTS/G/$":0.86,
     "PTS/G(ALT)":4.2,
-    "TIERS":5,
+    "BYE WEEK":5,
     "FIELD15":""
   },
   {
@@ -3687,7 +4227,7 @@ var allPos = [
     "PTS/GAME":5.38,
     "PTS/G/$":1.1,
     "PTS/G(ALT)":5.38,
-    "TIERS":8,
+    "BYE WEEK":8,
     "FIELD15":""
   },
   {
@@ -3704,7 +4244,7 @@ var allPos = [
     "PTS/GAME":4.73,
     "PTS/G/$":0.97,
     "PTS/G(ALT)":4.73,
-    "TIERS":7,
+    "BYE WEEK":7,
     "FIELD15":""
   },
   {
@@ -3721,7 +4261,7 @@ var allPos = [
     "PTS/GAME":4.64,
     "PTS/G/$":0.95,
     "PTS/G(ALT)":4.64,
-    "TIERS":11,
+    "BYE WEEK":11,
     "FIELD15":""
   },
   {
@@ -3738,7 +4278,7 @@ var allPos = [
     "PTS/GAME":8.5,
     "PTS/G/$":1.73,
     "PTS/G(ALT)":8.5,
-    "TIERS":4,
+    "BYE WEEK":4,
     "FIELD15":""
   },
   {
@@ -3755,7 +4295,7 @@ var allPos = [
     "PTS/GAME":0.97,
     "PTS/G/$":0.2,
     "PTS/G(ALT)":0.97,
-    "TIERS":9,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -3772,7 +4312,7 @@ var allPos = [
     "PTS/GAME":5.28,
     "PTS/G/$":1.1,
     "PTS/G(ALT)":5.28,
-    "TIERS":4,
+    "BYE WEEK":4,
     "FIELD15":""
   },
   {
@@ -3789,7 +4329,7 @@ var allPos = [
     "PTS/GAME":5.32,
     "PTS/G/$":1.11,
     "PTS/G(ALT)":5.32,
-    "TIERS":11,
+    "BYE WEEK":11,
     "FIELD15":""
   },
   {
@@ -3806,7 +4346,7 @@ var allPos = [
     "PTS/GAME":3.8,
     "PTS/G/$":0.79,
     "PTS/G(ALT)":3.8,
-    "TIERS":4,
+    "BYE WEEK":4,
     "FIELD15":""
   },
   {
@@ -3823,7 +4363,7 @@ var allPos = [
     "PTS/GAME":7.06,
     "PTS/G/$":1.47,
     "PTS/G(ALT)":7.06,
-    "TIERS":11,
+    "BYE WEEK":11,
     "FIELD15":""
   },
   {
@@ -3840,7 +4380,7 @@ var allPos = [
     "PTS/GAME":4.36,
     "PTS/G/$":0.91,
     "PTS/G(ALT)":4.36,
-    "TIERS":11,
+    "BYE WEEK":11,
     "FIELD15":""
   },
   {
@@ -3857,7 +4397,7 @@ var allPos = [
     "PTS/GAME":3.17,
     "PTS/G/$":0.66,
     "PTS/G(ALT)":3.17,
-    "TIERS":9,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -3874,7 +4414,7 @@ var allPos = [
     "PTS/GAME":3.57,
     "PTS/G/$":0.74,
     "PTS/G(ALT)":3.57,
-    "TIERS":5,
+    "BYE WEEK":5,
     "FIELD15":""
   },
   {
@@ -3891,7 +4431,7 @@ var allPos = [
     "PTS/GAME":2.53,
     "PTS/G/$":0.54,
     "PTS/G(ALT)":2.53,
-    "TIERS":5,
+    "BYE WEEK":5,
     "FIELD15":""
   },
   {
@@ -3908,7 +4448,7 @@ var allPos = [
     "PTS/GAME":4.1,
     "PTS/G/$":0.87,
     "PTS/G(ALT)":4.1,
-    "TIERS":4,
+    "BYE WEEK":4,
     "FIELD15":""
   },
   {
@@ -3925,7 +4465,7 @@ var allPos = [
     "PTS/GAME":2.4,
     "PTS/G/$":0.51,
     "PTS/G(ALT)":2.4,
-    "TIERS":7,
+    "BYE WEEK":7,
     "FIELD15":""
   },
   {
@@ -3942,7 +4482,7 @@ var allPos = [
     "PTS/GAME":2.63,
     "PTS/G/$":0.56,
     "PTS/G(ALT)":2.63,
-    "TIERS":8,
+    "BYE WEEK":8,
     "FIELD15":""
   },
   {
@@ -3959,7 +4499,7 @@ var allPos = [
     "PTS/GAME":3.75,
     "PTS/G/$":0.8,
     "PTS/G(ALT)":3.75,
-    "TIERS":5,
+    "BYE WEEK":5,
     "FIELD15":""
   },
   {
@@ -3976,7 +4516,7 @@ var allPos = [
     "PTS/GAME":4.35,
     "PTS/G/$":0.93,
     "PTS/G(ALT)":4.35,
-    "TIERS":7,
+    "BYE WEEK":7,
     "FIELD15":""
   },
   {
@@ -3993,7 +4533,7 @@ var allPos = [
     "PTS/GAME":4.38,
     "PTS/G/$":0.93,
     "PTS/G(ALT)":4.38,
-    "TIERS":5,
+    "BYE WEEK":5,
     "FIELD15":""
   },
   {
@@ -4010,7 +4550,7 @@ var allPos = [
     "PTS/GAME":7,
     "PTS/G/$":1.49,
     "PTS/G(ALT)":7,
-    "TIERS":8,
+    "BYE WEEK":8,
     "FIELD15":""
   },
   {
@@ -4027,7 +4567,7 @@ var allPos = [
     "PTS/GAME":3.9,
     "PTS/G/$":0.83,
     "PTS/G(ALT)":3.9,
-    "TIERS":5,
+    "BYE WEEK":5,
     "FIELD15":""
   },
   {
@@ -4044,7 +4584,7 @@ var allPos = [
     "PTS/GAME":7.05,
     "PTS/G/$":1.53,
     "PTS/G(ALT)":7.05,
-    "TIERS":5,
+    "BYE WEEK":5,
     "FIELD15":""
   },
   {
@@ -4061,7 +4601,7 @@ var allPos = [
     "PTS/GAME":3.56,
     "PTS/G/$":0.77,
     "PTS/G(ALT)":3.56,
-    "TIERS":8,
+    "BYE WEEK":8,
     "FIELD15":""
   },
   {
@@ -4078,7 +4618,7 @@ var allPos = [
     "PTS/GAME":3.35,
     "PTS/G/$":0.73,
     "PTS/G(ALT)":3.35,
-    "TIERS":8,
+    "BYE WEEK":8,
     "FIELD15":""
   },
   {
@@ -4095,7 +4635,7 @@ var allPos = [
     "PTS/GAME":1.33,
     "PTS/G/$":0.29,
     "PTS/G(ALT)":1.33,
-    "TIERS":5,
+    "BYE WEEK":5,
     "FIELD15":""
   },
   {
@@ -4112,7 +4652,7 @@ var allPos = [
     "PTS/GAME":2.23,
     "PTS/G/$":0.49,
     "PTS/G(ALT)":2.23,
-    "TIERS":5,
+    "BYE WEEK":5,
     "FIELD15":""
   },
   {
@@ -4129,7 +4669,7 @@ var allPos = [
     "PTS/GAME":4.64,
     "PTS/G/$":1.03,
     "PTS/G(ALT)":4.64,
-    "TIERS":9,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -4146,7 +4686,7 @@ var allPos = [
     "PTS/GAME":4.05,
     "PTS/G/$":0.9,
     "PTS/G(ALT)":4.05,
-    "TIERS":9,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -4163,7 +4703,7 @@ var allPos = [
     "PTS/GAME":0,
     "PTS/G/$":0,
     "PTS/G(ALT)":0,
-    "TIERS":10,
+    "BYE WEEK":10,
     "FIELD15":""
   },
   {
@@ -4180,7 +4720,7 @@ var allPos = [
     "PTS/GAME":0,
     "PTS/G/$":0,
     "PTS/G(ALT)":0,
-    "TIERS":10,
+    "BYE WEEK":10,
     "FIELD15":""
   },
   {
@@ -4197,7 +4737,7 @@ var allPos = [
     "PTS/GAME":0.6,
     "PTS/G/$":0.13,
     "PTS/G(ALT)":0.6,
-    "TIERS":7,
+    "BYE WEEK":7,
     "FIELD15":""
   },
   {
@@ -4214,7 +4754,7 @@ var allPos = [
     "PTS/GAME":0,
     "PTS/G/$":0,
     "PTS/G(ALT)":0,
-    "TIERS":4,
+    "BYE WEEK":4,
     "FIELD15":""
   },
   {
@@ -4231,7 +4771,7 @@ var allPos = [
     "PTS/GAME":3.28,
     "PTS/G/$":0.73,
     "PTS/G(ALT)":3.28,
-    "TIERS":7,
+    "BYE WEEK":7,
     "FIELD15":""
   },
   {
@@ -4248,7 +4788,7 @@ var allPos = [
     "PTS/GAME":0,
     "PTS/G/$":0,
     "PTS/G(ALT)":0,
-    "TIERS":8,
+    "BYE WEEK":8,
     "FIELD15":""
   },
   {
@@ -4265,7 +4805,7 @@ var allPos = [
     "PTS/GAME":0,
     "PTS/G/$":0,
     "PTS/G(ALT)":0,
-    "TIERS":7,
+    "BYE WEEK":7,
     "FIELD15":""
   },
   {
@@ -4282,7 +4822,7 @@ var allPos = [
     "PTS/GAME":3.4,
     "PTS/G/$":0.76,
     "PTS/G(ALT)":3.4,
-    "TIERS":11,
+    "BYE WEEK":11,
     "FIELD15":""
   },
   {
@@ -4299,7 +4839,7 @@ var allPos = [
     "PTS/GAME":-2,
     "PTS/G/$":-0.44,
     "PTS/G(ALT)":-2,
-    "TIERS":8,
+    "BYE WEEK":8,
     "FIELD15":""
   },
   {
@@ -4316,7 +4856,7 @@ var allPos = [
     "PTS/GAME":2.8,
     "PTS/G/$":0.62,
     "PTS/G(ALT)":2.8,
-    "TIERS":9,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -4333,7 +4873,7 @@ var allPos = [
     "PTS/GAME":7.05,
     "PTS/G/$":1.57,
     "PTS/G(ALT)":7.05,
-    "TIERS":4,
+    "BYE WEEK":4,
     "FIELD15":""
   },
   {
@@ -4350,7 +4890,7 @@ var allPos = [
     "PTS/GAME":3.4,
     "PTS/G/$":0.76,
     "PTS/G(ALT)":3.4,
-    "TIERS":9,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -4367,7 +4907,7 @@ var allPos = [
     "PTS/GAME":6.6,
     "PTS/G/$":1.47,
     "PTS/G(ALT)":6.6,
-    "TIERS":9,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -4384,7 +4924,7 @@ var allPos = [
     "PTS/GAME":1.2,
     "PTS/G/$":0.27,
     "PTS/G(ALT)":1.2,
-    "TIERS":9,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -4401,7 +4941,7 @@ var allPos = [
     "PTS/GAME":3.4,
     "PTS/G/$":0.76,
     "PTS/G(ALT)":3.4,
-    "TIERS":8,
+    "BYE WEEK":8,
     "FIELD15":""
   },
   {
@@ -4418,7 +4958,7 @@ var allPos = [
     "PTS/GAME":0.73,
     "PTS/G/$":0.16,
     "PTS/G(ALT)":0.73,
-    "TIERS":5,
+    "BYE WEEK":5,
     "FIELD15":""
   },
   {
@@ -4435,7 +4975,7 @@ var allPos = [
     "PTS/GAME":2.72,
     "PTS/G/$":0.6,
     "PTS/G(ALT)":2.72,
-    "TIERS":10,
+    "BYE WEEK":10,
     "FIELD15":""
   },
   {
@@ -4452,7 +4992,7 @@ var allPos = [
     "PTS/GAME":2.4,
     "PTS/G/$":0.53,
     "PTS/G(ALT)":2.4,
-    "TIERS":9,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -4469,7 +5009,7 @@ var allPos = [
     "PTS/GAME":4.27,
     "PTS/G/$":0.95,
     "PTS/G(ALT)":4.27,
-    "TIERS":9,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -4486,7 +5026,7 @@ var allPos = [
     "PTS/GAME":1.05,
     "PTS/G/$":0.23,
     "PTS/G(ALT)":1.05,
-    "TIERS":10,
+    "BYE WEEK":10,
     "FIELD15":""
   },
   {
@@ -4503,7 +5043,7 @@ var allPos = [
     "PTS/GAME":0,
     "PTS/G/$":0,
     "PTS/G(ALT)":0,
-    "TIERS":9,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -4520,7 +5060,7 @@ var allPos = [
     "PTS/GAME":0,
     "PTS/G/$":0,
     "PTS/G(ALT)":0,
-    "TIERS":11,
+    "BYE WEEK":11,
     "FIELD15":""
   },
   {
@@ -4537,7 +5077,7 @@ var allPos = [
     "PTS/GAME":3.04,
     "PTS/G/$":0.68,
     "PTS/G(ALT)":3.04,
-    "TIERS":9,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -4554,7 +5094,7 @@ var allPos = [
     "PTS/GAME":2.13,
     "PTS/G/$":0.47,
     "PTS/G(ALT)":2.13,
-    "TIERS":10,
+    "BYE WEEK":10,
     "FIELD15":""
   },
   {
@@ -4571,7 +5111,7 @@ var allPos = [
     "PTS/GAME":3.43,
     "PTS/G/$":0.76,
     "PTS/G(ALT)":3.43,
-    "TIERS":9,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -4588,7 +5128,7 @@ var allPos = [
     "PTS/GAME":0,
     "PTS/G/$":0,
     "PTS/G(ALT)":0,
-    "TIERS":5,
+    "BYE WEEK":5,
     "FIELD15":""
   },
   {
@@ -4605,7 +5145,7 @@ var allPos = [
     "PTS/GAME":6.3,
     "PTS/G/$":1.4,
     "PTS/G(ALT)":6.3,
-    "TIERS":5,
+    "BYE WEEK":5,
     "FIELD15":""
   },
   {
@@ -4622,7 +5162,7 @@ var allPos = [
     "PTS/GAME":1.33,
     "PTS/G/$":0.3,
     "PTS/G(ALT)":1.33,
-    "TIERS":9,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -4639,7 +5179,7 @@ var allPos = [
     "PTS/GAME":0,
     "PTS/G/$":0,
     "PTS/G(ALT)":0,
-    "TIERS":7,
+    "BYE WEEK":7,
     "FIELD15":""
   },
   {
@@ -4656,7 +5196,7 @@ var allPos = [
     "PTS/GAME":3.63,
     "PTS/G/$":0.81,
     "PTS/G(ALT)":3.63,
-    "TIERS":8,
+    "BYE WEEK":8,
     "FIELD15":""
   },
   {
@@ -4673,7 +5213,7 @@ var allPos = [
     "PTS/GAME":1.43,
     "PTS/G/$":0.32,
     "PTS/G(ALT)":1.43,
-    "TIERS":9,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -4690,7 +5230,7 @@ var allPos = [
     "PTS/GAME":1.6,
     "PTS/G/$":0.36,
     "PTS/G(ALT)":1.6,
-    "TIERS":11,
+    "BYE WEEK":11,
     "FIELD15":""
   },
   {
@@ -4707,7 +5247,7 @@ var allPos = [
     "PTS/GAME":1.55,
     "PTS/G/$":0.34,
     "PTS/G(ALT)":1.55,
-    "TIERS":11,
+    "BYE WEEK":11,
     "FIELD15":""
   },
   {
@@ -4724,7 +5264,7 @@ var allPos = [
     "PTS/GAME":-1,
     "PTS/G/$":-0.22,
     "PTS/G(ALT)":-1,
-    "TIERS":9,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -4741,7 +5281,7 @@ var allPos = [
     "PTS/GAME":1.4,
     "PTS/G/$":0.31,
     "PTS/G(ALT)":1.4,
-    "TIERS":10,
+    "BYE WEEK":10,
     "FIELD15":""
   },
   {
@@ -4758,7 +5298,7 @@ var allPos = [
     "PTS/GAME":4.1,
     "PTS/G/$":0.91,
     "PTS/G(ALT)":4.1,
-    "TIERS":7,
+    "BYE WEEK":7,
     "FIELD15":""
   },
   {
@@ -4775,7 +5315,7 @@ var allPos = [
     "PTS/GAME":0.93,
     "PTS/G/$":0.21,
     "PTS/G(ALT)":0.93,
-    "TIERS":9,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -4792,7 +5332,7 @@ var allPos = [
     "PTS/GAME":11.7,
     "PTS/G/$":2.6,
     "PTS/G(ALT)":11.7,
-    "TIERS":5,
+    "BYE WEEK":5,
     "FIELD15":""
   },
   {
@@ -4809,7 +5349,7 @@ var allPos = [
     "PTS/GAME":10.92,
     "PTS/G/$":0,
     "PTS/G(ALT)":10.92,
-    "TIERS":6,
+    "BYE WEEK":6,
     "FIELD15":""
   },
   {
@@ -4826,7 +5366,7 @@ var allPos = [
     "PTS/GAME":5.35,
     "PTS/G/$":0,
     "PTS/G(ALT)":5.35,
-    "TIERS":6,
+    "BYE WEEK":6,
     "FIELD15":""
   },
   {
@@ -4843,7 +5383,7 @@ var allPos = [
     "PTS/GAME":5.96,
     "PTS/G/$":0,
     "PTS/G(ALT)":5.96,
-    "TIERS":6,
+    "BYE WEEK":6,
     "FIELD15":""
   },
   {
@@ -4860,7 +5400,7 @@ var allPos = [
     "PTS/GAME":10.26,
     "PTS/G/$":0,
     "PTS/G(ALT)":10.26,
-    "TIERS":6,
+    "BYE WEEK":6,
     "FIELD15":""
   },
   {
@@ -4877,7 +5417,7 @@ var allPos = [
     "PTS/GAME":1.5,
     "PTS/G/$":0,
     "PTS/G(ALT)":1.5,
-    "TIERS":6,
+    "BYE WEEK":6,
     "FIELD15":""
   },
   {
@@ -4894,7 +5434,7 @@ var allPos = [
     "PTS/GAME":6.08,
     "PTS/G/$":0,
     "PTS/G(ALT)":6.08,
-    "TIERS":6,
+    "BYE WEEK":6,
     "FIELD15":""
   },
   {
@@ -4911,7 +5451,7 @@ var allPos = [
     "PTS/GAME":1.3,
     "PTS/G/$":0,
     "PTS/G(ALT)":1.3,
-    "TIERS":6,
+    "BYE WEEK":6,
     "FIELD15":""
   },
   {
@@ -4928,7 +5468,7 @@ var allPos = [
     "PTS/GAME":3.33,
     "PTS/G/$":0,
     "PTS/G(ALT)":3.33,
-    "TIERS":6,
+    "BYE WEEK":6,
     "FIELD15":""
   },
   {
@@ -4945,7 +5485,7 @@ var allPos = [
     "PTS/GAME":12.46,
     "PTS/G/$":0,
     "PTS/G(ALT)":12.46,
-    "TIERS":6,
+    "BYE WEEK":6,
     "FIELD15":""
   },
   {
@@ -4962,7 +5502,7 @@ var allPos = [
     "PTS/GAME":5.32,
     "PTS/G/$":0,
     "PTS/G(ALT)":5.32,
-    "TIERS":6,
+    "BYE WEEK":6,
     "FIELD15":""
   },
   {
@@ -4979,7 +5519,7 @@ var allPos = [
     "PTS/GAME":8.26,
     "PTS/G/$":0,
     "PTS/G(ALT)":8.26,
-    "TIERS":6,
+    "BYE WEEK":6,
     "FIELD15":""
   },
   {
@@ -4996,7 +5536,7 @@ var allPos = [
     "PTS/GAME":7.2,
     "PTS/G/$":0,
     "PTS/G(ALT)":7.2,
-    "TIERS":6,
+    "BYE WEEK":6,
     "FIELD15":""
   },
   {
@@ -5013,7 +5553,7 @@ var allPos = [
     "PTS/GAME":0.55,
     "PTS/G/$":0,
     "PTS/G(ALT)":0.55,
-    "TIERS":6,
+    "BYE WEEK":6,
     "FIELD15":""
   },
   {
@@ -5030,7 +5570,7 @@ var allPos = [
     "PTS/GAME":5.98,
     "PTS/G/$":0,
     "PTS/G(ALT)":5.98,
-    "TIERS":6,
+    "BYE WEEK":6,
     "FIELD15":""
   },
   {
@@ -5047,7 +5587,7 @@ var allPos = [
     "PTS/GAME":1.37,
     "PTS/G/$":0,
     "PTS/G(ALT)":1.37,
-    "TIERS":6,
+    "BYE WEEK":6,
     "FIELD15":""
   },
   {
@@ -5064,7 +5604,7 @@ var allPos = [
     "PTS/GAME":12.56,
     "PTS/G/$":0,
     "PTS/G(ALT)":12.56,
-    "TIERS":6,
+    "BYE WEEK":6,
     "FIELD15":""
   },
   {
@@ -5081,7 +5621,7 @@ var allPos = [
     "PTS/GAME":0.2,
     "PTS/G/$":0,
     "PTS/G(ALT)":0.2,
-    "TIERS":6,
+    "BYE WEEK":6,
     "FIELD15":""
   },
   {
@@ -5098,10 +5638,10 @@ var allPos = [
     "PTS/GAME":4.7,
     "PTS/G/$":0,
     "PTS/G(ALT)":4.7,
-    "TIERS":6,
+    "BYE WEEK":6,
     "FIELD15":""
   }
-],
+]
 
 //end WR
 
@@ -5123,7 +5663,7 @@ var allPos = [
     "PTS/GAME":17.88,
     "PTS/G/$":2.18,
     "PTS/G(ALT)":17.88,
-    "TIERS":4,
+    "BYE WEEK":4,
     "FIELD15":""
   },
   {
@@ -5140,7 +5680,7 @@ var allPos = [
     "PTS/GAME":11.2,
     "PTS/G/$":1.78,
     "PTS/G(ALT)":11.2,
-    "TIERS":5,
+    "BYE WEEK":5,
     "FIELD15":""
   },
   {
@@ -5157,7 +5697,7 @@ var allPos = [
     "PTS/GAME":8.58,
     "PTS/G/$":1.36,
     "PTS/G(ALT)":8.58,
-    "TIERS":9,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -5174,7 +5714,7 @@ var allPos = [
     "PTS/GAME":11.36,
     "PTS/G/$":1.83,
     "PTS/G(ALT)":11.36,
-    "TIERS":9,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -5191,7 +5731,7 @@ var allPos = [
     "PTS/GAME":14.64,
     "PTS/G/$":2.44,
     "PTS/G(ALT)":14.64,
-    "TIERS":7,
+    "BYE WEEK":7,
     "FIELD15":""
   },
   {
@@ -5208,7 +5748,7 @@ var allPos = [
     "PTS/GAME":9.86,
     "PTS/G/$":1.7,
     "PTS/G(ALT)":9.86,
-    "TIERS":7,
+    "BYE WEEK":7,
     "FIELD15":""
   },
   {
@@ -5225,7 +5765,7 @@ var allPos = [
     "PTS/GAME":13.48,
     "PTS/G/$":2.36,
     "PTS/G(ALT)":13.48,
-    "TIERS":11,
+    "BYE WEEK":11,
     "FIELD15":""
   },
   {
@@ -5242,7 +5782,7 @@ var allPos = [
     "PTS/GAME":9.84,
     "PTS/G/$":1.73,
     "PTS/G(ALT)":9.84,
-    "TIERS":8,
+    "BYE WEEK":8,
     "FIELD15":""
   },
   {
@@ -5259,7 +5799,7 @@ var allPos = [
     "PTS/GAME":10.95,
     "PTS/G/$":1.92,
     "PTS/G(ALT)":10.95,
-    "TIERS":8,
+    "BYE WEEK":8,
     "FIELD15":""
   },
   {
@@ -5276,7 +5816,7 @@ var allPos = [
     "PTS/GAME":25.7,
     "PTS/G/$":4.67,
     "PTS/G(ALT)":25.7,
-    "TIERS":10,
+    "BYE WEEK":10,
     "FIELD15":""
   },
   {
@@ -5293,7 +5833,7 @@ var allPos = [
     "PTS/GAME":6.46,
     "PTS/G/$":1.17,
     "PTS/G(ALT)":6.46,
-    "TIERS":11,
+    "BYE WEEK":11,
     "FIELD15":""
   },
   {
@@ -5310,7 +5850,7 @@ var allPos = [
     "PTS/GAME":9.23,
     "PTS/G/$":1.71,
     "PTS/G(ALT)":9.23,
-    "TIERS":4,
+    "BYE WEEK":4,
     "FIELD15":""
   },
   {
@@ -5327,7 +5867,7 @@ var allPos = [
     "PTS/GAME":5.75,
     "PTS/G/$":1.06,
     "PTS/G(ALT)":5.75,
-    "TIERS":5,
+    "BYE WEEK":5,
     "FIELD15":""
   },
   {
@@ -5344,7 +5884,7 @@ var allPos = [
     "PTS/GAME":7.58,
     "PTS/G/$":1.43,
     "PTS/G(ALT)":7.58,
-    "TIERS":11,
+    "BYE WEEK":11,
     "FIELD15":""
   },
   {
@@ -5361,7 +5901,7 @@ var allPos = [
     "PTS/GAME":3,
     "PTS/G/$":0.58,
     "PTS/G(ALT)":3,
-    "TIERS":8,
+    "BYE WEEK":8,
     "FIELD15":""
   },
   {
@@ -5378,7 +5918,7 @@ var allPos = [
     "PTS/GAME":6.95,
     "PTS/G/$":1.36,
     "PTS/G(ALT)":6.95,
-    "TIERS":10,
+    "BYE WEEK":10,
     "FIELD15":""
   },
   {
@@ -5395,7 +5935,7 @@ var allPos = [
     "PTS/GAME":7.7,
     "PTS/G/$":1.51,
     "PTS/G(ALT)":7.7,
-    "TIERS":10,
+    "BYE WEEK":10,
     "FIELD15":""
   },
   {
@@ -5412,7 +5952,7 @@ var allPos = [
     "PTS/GAME":10.98,
     "PTS/G/$":2.15,
     "PTS/G(ALT)":10.98,
-    "TIERS":10,
+    "BYE WEEK":10,
     "FIELD15":""
   },
   {
@@ -5429,7 +5969,7 @@ var allPos = [
     "PTS/GAME":9.35,
     "PTS/G/$":1.83,
     "PTS/G(ALT)":9.35,
-    "TIERS":9,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -5446,7 +5986,7 @@ var allPos = [
     "PTS/GAME":8.02,
     "PTS/G/$":1.57,
     "PTS/G(ALT)":8.02,
-    "TIERS":7,
+    "BYE WEEK":7,
     "FIELD15":""
   },
   {
@@ -5463,7 +6003,7 @@ var allPos = [
     "PTS/GAME":5.58,
     "PTS/G/$":1.12,
     "PTS/G(ALT)":5.58,
-    "TIERS":4,
+    "BYE WEEK":4,
     "FIELD15":""
   },
   {
@@ -5480,7 +6020,7 @@ var allPos = [
     "PTS/GAME":5.85,
     "PTS/G/$":1.17,
     "PTS/G(ALT)":5.85,
-    "TIERS":5,
+    "BYE WEEK":5,
     "FIELD15":""
   },
   {
@@ -5497,7 +6037,7 @@ var allPos = [
     "PTS/GAME":5.9,
     "PTS/G/$":1.18,
     "PTS/G(ALT)":5.9,
-    "TIERS":10,
+    "BYE WEEK":10,
     "FIELD15":""
   },
   {
@@ -5514,7 +6054,7 @@ var allPos = [
     "PTS/GAME":4.78,
     "PTS/G/$":0.96,
     "PTS/G(ALT)":4.78,
-    "TIERS":8,
+    "BYE WEEK":8,
     "FIELD15":""
   },
   {
@@ -5531,7 +6071,7 @@ var allPos = [
     "PTS/GAME":5.08,
     "PTS/G/$":1.04,
     "PTS/G(ALT)":5.08,
-    "TIERS":11,
+    "BYE WEEK":11,
     "FIELD15":""
   },
   {
@@ -5548,7 +6088,7 @@ var allPos = [
     "PTS/GAME":4.97,
     "PTS/G/$":1.01,
     "PTS/G(ALT)":4.97,
-    "TIERS":10,
+    "BYE WEEK":10,
     "FIELD15":""
   },
   {
@@ -5565,7 +6105,7 @@ var allPos = [
     "PTS/GAME":4.82,
     "PTS/G/$":0.98,
     "PTS/G(ALT)":4.82,
-    "TIERS":7,
+    "BYE WEEK":7,
     "FIELD15":""
   },
   {
@@ -5582,7 +6122,7 @@ var allPos = [
     "PTS/GAME":4.63,
     "PTS/G/$":0.95,
     "PTS/G(ALT)":4.63,
-    "TIERS":4,
+    "BYE WEEK":4,
     "FIELD15":""
   },
   {
@@ -5599,7 +6139,7 @@ var allPos = [
     "PTS/GAME":3.58,
     "PTS/G/$":0.73,
     "PTS/G(ALT)":3.58,
-    "TIERS":8,
+    "BYE WEEK":8,
     "FIELD15":""
   },
   {
@@ -5616,7 +6156,7 @@ var allPos = [
     "PTS/GAME":10.7,
     "PTS/G/$":2.18,
     "PTS/G(ALT)":10.7,
-    "TIERS":9,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -5633,7 +6173,7 @@ var allPos = [
     "PTS/GAME":2.4,
     "PTS/G/$":0.5,
     "PTS/G(ALT)":2.4,
-    "TIERS":7,
+    "BYE WEEK":7,
     "FIELD15":""
   },
   {
@@ -5650,7 +6190,7 @@ var allPos = [
     "PTS/GAME":7.43,
     "PTS/G/$":1.55,
     "PTS/G(ALT)":7.43,
-    "TIERS":9,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -5667,7 +6207,7 @@ var allPos = [
     "PTS/GAME":1.63,
     "PTS/G/$":0.35,
     "PTS/G(ALT)":1.63,
-    "TIERS":8,
+    "BYE WEEK":8,
     "FIELD15":""
   },
   {
@@ -5684,7 +6224,7 @@ var allPos = [
     "PTS/GAME":6.83,
     "PTS/G/$":1.45,
     "PTS/G(ALT)":6.83,
-    "TIERS":8,
+    "BYE WEEK":8,
     "FIELD15":""
   },
   {
@@ -5701,7 +6241,7 @@ var allPos = [
     "PTS/GAME":5.63,
     "PTS/G/$":1.2,
     "PTS/G(ALT)":5.63,
-    "TIERS":8,
+    "BYE WEEK":8,
     "FIELD15":""
   },
   {
@@ -5718,7 +6258,7 @@ var allPos = [
     "PTS/GAME":2.58,
     "PTS/G/$":0.55,
     "PTS/G(ALT)":2.58,
-    "TIERS":11,
+    "BYE WEEK":11,
     "FIELD15":""
   },
   {
@@ -5735,7 +6275,7 @@ var allPos = [
     "PTS/GAME":3.4,
     "PTS/G/$":0.72,
     "PTS/G(ALT)":3.4,
-    "TIERS":9,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -5752,7 +6292,7 @@ var allPos = [
     "PTS/GAME":2,
     "PTS/G/$":0.43,
     "PTS/G(ALT)":2,
-    "TIERS":5,
+    "BYE WEEK":5,
     "FIELD15":""
   },
   {
@@ -5769,7 +6309,7 @@ var allPos = [
     "PTS/GAME":2.2,
     "PTS/G/$":0.48,
     "PTS/G(ALT)":2.2,
-    "TIERS":9,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -5786,7 +6326,7 @@ var allPos = [
     "PTS/GAME":-0.6,
     "PTS/G/$":-0.13,
     "PTS/G(ALT)":-0.6,
-    "TIERS":11,
+    "BYE WEEK":11,
     "FIELD15":""
   },
   {
@@ -5803,7 +6343,7 @@ var allPos = [
     "PTS/GAME":3.77,
     "PTS/G/$":0.82,
     "PTS/G(ALT)":3.77,
-    "TIERS":7,
+    "BYE WEEK":7,
     "FIELD15":""
   },
   {
@@ -5820,7 +6360,7 @@ var allPos = [
     "PTS/GAME":1.03,
     "PTS/G/$":0.22,
     "PTS/G(ALT)":1.03,
-    "TIERS":10,
+    "BYE WEEK":10,
     "FIELD15":""
   },
   {
@@ -5837,7 +6377,7 @@ var allPos = [
     "PTS/GAME":0,
     "PTS/G/$":0,
     "PTS/G(ALT)":0,
-    "TIERS":5,
+    "BYE WEEK":5,
     "FIELD15":""
   },
   {
@@ -5854,7 +6394,7 @@ var allPos = [
     "PTS/GAME":6.4,
     "PTS/G/$":1.39,
     "PTS/G(ALT)":6.4,
-    "TIERS":5,
+    "BYE WEEK":5,
     "FIELD15":""
   },
   {
@@ -5871,7 +6411,7 @@ var allPos = [
     "PTS/GAME":2.48,
     "PTS/G/$":0.54,
     "PTS/G(ALT)":2.48,
-    "TIERS":9,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -5888,7 +6428,7 @@ var allPos = [
     "PTS/GAME":4.5,
     "PTS/G/$":1,
     "PTS/G(ALT)":4.5,
-    "TIERS":11,
+    "BYE WEEK":11,
     "FIELD15":""
   },
   {
@@ -5905,7 +6445,7 @@ var allPos = [
     "PTS/GAME":0,
     "PTS/G/$":0,
     "PTS/G(ALT)":0,
-    "TIERS":11,
+    "BYE WEEK":11,
     "FIELD15":""
   },
   {
@@ -5922,7 +6462,7 @@ var allPos = [
     "PTS/GAME":0,
     "PTS/G/$":0,
     "PTS/G(ALT)":0,
-    "TIERS":5,
+    "BYE WEEK":5,
     "FIELD15":""
   },
   {
@@ -5939,7 +6479,7 @@ var allPos = [
     "PTS/GAME":2.1,
     "PTS/G/$":0.47,
     "PTS/G(ALT)":2.1,
-    "TIERS":4,
+    "BYE WEEK":4,
     "FIELD15":""
   },
   {
@@ -5956,7 +6496,7 @@ var allPos = [
     "PTS/GAME":6.05,
     "PTS/G/$":1.34,
     "PTS/G(ALT)":6.05,
-    "TIERS":10,
+    "BYE WEEK":10,
     "FIELD15":""
   },
   {
@@ -5973,7 +6513,7 @@ var allPos = [
     "PTS/GAME":0.1,
     "PTS/G/$":0.02,
     "PTS/G(ALT)":0.1,
-    "TIERS":10,
+    "BYE WEEK":10,
     "FIELD15":""
   },
   {
@@ -5990,7 +6530,7 @@ var allPos = [
     "PTS/GAME":6.2,
     "PTS/G/$":1.38,
     "PTS/G(ALT)":6.2,
-    "TIERS":4,
+    "BYE WEEK":4,
     "FIELD15":""
   },
   {
@@ -6007,7 +6547,7 @@ var allPos = [
     "PTS/GAME":2.2,
     "PTS/G/$":0.49,
     "PTS/G(ALT)":2.2,
-    "TIERS":9,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -6024,7 +6564,7 @@ var allPos = [
     "PTS/GAME":3.97,
     "PTS/G/$":0.88,
     "PTS/G(ALT)":3.97,
-    "TIERS":5,
+    "BYE WEEK":5,
     "FIELD15":""
   },
   {
@@ -6041,7 +6581,7 @@ var allPos = [
     "PTS/GAME":1.5,
     "PTS/G/$":0.33,
     "PTS/G(ALT)":1.5,
-    "TIERS":11,
+    "BYE WEEK":11,
     "FIELD15":""
   },
   {
@@ -6058,7 +6598,7 @@ var allPos = [
     "PTS/GAME":1.52,
     "PTS/G/$":0.34,
     "PTS/G(ALT)":1.52,
-    "TIERS":9,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -6075,7 +6615,7 @@ var allPos = [
     "PTS/GAME":0.37,
     "PTS/G/$":0.08,
     "PTS/G(ALT)":0.37,
-    "TIERS":11,
+    "BYE WEEK":11,
     "FIELD15":""
   },
   {
@@ -6092,7 +6632,7 @@ var allPos = [
     "PTS/GAME":0.4,
     "PTS/G/$":0.09,
     "PTS/G(ALT)":0.4,
-    "TIERS":5,
+    "BYE WEEK":5,
     "FIELD15":""
   },
   {
@@ -6109,7 +6649,7 @@ var allPos = [
     "PTS/GAME":5.22,
     "PTS/G/$":1.16,
     "PTS/G(ALT)":5.22,
-    "TIERS":10,
+    "BYE WEEK":10,
     "FIELD15":""
   },
   {
@@ -6126,7 +6666,7 @@ var allPos = [
     "PTS/GAME":2,
     "PTS/G/$":0.44,
     "PTS/G(ALT)":2,
-    "TIERS":8,
+    "BYE WEEK":8,
     "FIELD15":""
   },
   {
@@ -6143,7 +6683,7 @@ var allPos = [
     "PTS/GAME":1.33,
     "PTS/G/$":0.3,
     "PTS/G(ALT)":1.33,
-    "TIERS":10,
+    "BYE WEEK":10,
     "FIELD15":""
   },
   {
@@ -6160,7 +6700,7 @@ var allPos = [
     "PTS/GAME":2.45,
     "PTS/G/$":0.54,
     "PTS/G(ALT)":2.45,
-    "TIERS":9,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -6177,7 +6717,7 @@ var allPos = [
     "PTS/GAME":2.9,
     "PTS/G/$":0.64,
     "PTS/G(ALT)":2.9,
-    "TIERS":9,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -6194,7 +6734,7 @@ var allPos = [
     "PTS/GAME":2.6,
     "PTS/G/$":0.58,
     "PTS/G(ALT)":2.6,
-    "TIERS":10,
+    "BYE WEEK":10,
     "FIELD15":""
   },
   {
@@ -6211,7 +6751,7 @@ var allPos = [
     "PTS/GAME":0.7,
     "PTS/G/$":0.16,
     "PTS/G(ALT)":0.7,
-    "TIERS":8,
+    "BYE WEEK":8,
     "FIELD15":""
   },
   {
@@ -6228,7 +6768,7 @@ var allPos = [
     "PTS/GAME":0,
     "PTS/G/$":0,
     "PTS/G(ALT)":0,
-    "TIERS":9,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -6245,7 +6785,7 @@ var allPos = [
     "PTS/GAME":2.45,
     "PTS/G/$":0.54,
     "PTS/G(ALT)":2.45,
-    "TIERS":9,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -6262,7 +6802,7 @@ var allPos = [
     "PTS/GAME":2.57,
     "PTS/G/$":0.57,
     "PTS/G(ALT)":2.57,
-    "TIERS":9,
+    "BYE WEEK":9,
     "FIELD15":""
   },
   {
@@ -6279,7 +6819,7 @@ var allPos = [
     "PTS/GAME":1.07,
     "PTS/G/$":0.24,
     "PTS/G(ALT)":1.07,
-    "TIERS":10,
+    "BYE WEEK":10,
     "FIELD15":""
   },
   {
@@ -6296,7 +6836,7 @@ var allPos = [
     "PTS/GAME":0,
     "PTS/G/$":0,
     "PTS/G(ALT)":0,
-    "TIERS":5,
+    "BYE WEEK":5,
     "FIELD15":""
   },
   {
@@ -6313,7 +6853,7 @@ var allPos = [
     "PTS/GAME":10.42,
     "PTS/G/$":0,
     "PTS/G(ALT)":10.42,
-    "TIERS":6,
+    "BYE WEEK":6,
     "FIELD15":""
   },
   {
@@ -6330,7 +6870,7 @@ var allPos = [
     "PTS/GAME":4.88,
     "PTS/G/$":0,
     "PTS/G(ALT)":4.88,
-    "TIERS":6,
+    "BYE WEEK":6,
     "FIELD15":""
   },
   {
@@ -6347,7 +6887,7 @@ var allPos = [
     "PTS/GAME":3,
     "PTS/G/$":0,
     "PTS/G(ALT)":3,
-    "TIERS":6,
+    "BYE WEEK":6,
     "FIELD15":""
   },
   {
@@ -6364,7 +6904,7 @@ var allPos = [
     "PTS/GAME":3.6,
     "PTS/G/$":0,
     "PTS/G(ALT)":3.6,
-    "TIERS":6,
+    "BYE WEEK":6,
     "FIELD15":""
   },
   {
@@ -6381,7 +6921,7 @@ var allPos = [
     "PTS/GAME":1.2,
     "PTS/G/$":0,
     "PTS/G(ALT)":1.2,
-    "TIERS":6,
+    "BYE WEEK":6,
     "FIELD15":""
   },
   {
@@ -6398,7 +6938,7 @@ var allPos = [
     "PTS/GAME":0.45,
     "PTS/G/$":0,
     "PTS/G(ALT)":0.45,
-    "TIERS":6,
+    "BYE WEEK":6,
     "FIELD15":""
   },
   {
@@ -6415,7 +6955,7 @@ var allPos = [
     "PTS/GAME":2.1,
     "PTS/G/$":0,
     "PTS/G(ALT)":2.1,
-    "TIERS":6,
+    "BYE WEEK":6,
     "FIELD15":""
   },
   {
@@ -6432,7 +6972,7 @@ var allPos = [
     "PTS/GAME":2.18,
     "PTS/G/$":0,
     "PTS/G(ALT)":2.18,
-    "TIERS":6,
+    "BYE WEEK":6,
     "FIELD15":""
   },
   {
@@ -6449,7 +6989,7 @@ var allPos = [
     "PTS/GAME":14.7,
     "PTS/G/$":0,
     "PTS/G(ALT)":14.7,
-    "TIERS":6,
+    "BYE WEEK":6,
     "FIELD15":""
   },
   {
@@ -6466,7 +7006,7 @@ var allPos = [
     "PTS/GAME":1.2,
     "PTS/G/$":0,
     "PTS/G(ALT)":1.2,
-    "TIERS":6,
+    "BYE WEEK":6,
     "FIELD15":""
   },
   {
@@ -6483,9 +7023,8 @@ var allPos = [
     "PTS/GAME":1.33,
     "PTS/G/$":0,
     "PTS/G(ALT)":1.33,
-    "TIERS":6,
+    "BYE WEEK":6,
     "FIELD15":""
   }
 ]
-];
 //end TE

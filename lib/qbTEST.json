@@ -1,0 +1,196 @@
+QB = [
+  {
+    "POS":"QB",
+    "NAME":"Rodgers, Aaron",
+    "SALARY":9300,
+    "TIER":7
+  },
+  {
+    "POS":"QB",
+    "NAME":"Brady, Tom",
+    "SALARY":9000,
+    "TIER":7,
+  },
+  {
+    "POS":"QB",
+    "NAME":"Luck, Andrew",
+    "SALARY":8600,
+    "TIER":6,
+  },
+  {
+    "POS":"QB",
+    "NAME":"Brees, Drew",
+    "SALARY":8300,
+    "TIER":6,
+  },
+  {
+    "POS":"QB",
+    "NAME":"Manning, Peyton",
+    "SALARY":8100,
+    "TIER":4,
+  },
+  {
+    "POS":"QB",
+    "NAME":"Ryan, Matt",
+    "SALARY":8100,
+    "TIER":6,
+  },
+  {
+    "POS":"QB",
+    "NAME":"Palmer, Carson",
+    "SALARY":8000,
+    "TIER":7,
+  },
+  {
+    "POS":"QB",
+    "NAME":"Newton, Cam",
+    "SALARY":8000,
+    "TIER":4,
+  },
+  {
+    "POS":"QB",
+    "NAME":"Wilson, Russell",
+    "SALARY":8000,
+    "TIER":5,
+  },
+  {
+    "POS":"QB",
+    "NAME":"Manning, Eli",
+    "SALARY":7800,
+    "TIER":6,
+  },
+  {
+    "POS":"QB",
+    "NAME":"Flacco, Joe",
+    "SALARY":7800,
+    "TIER":3,
+  },
+  {
+    "POS":"QB",
+    "NAME":"Bradford, Sam",
+    "SALARY":7700,
+    "TIER":5,
+  },
+  {
+    "POS":"QB",
+    "NAME":"Tannehill, Ryan",
+    "SALARY":7700,
+    "TIER":2,
+  },
+  {
+    "POS":"QB",
+    "NAME":"Dalton, Andy",
+    "SALARY":7600,
+    "TIER":6,
+  },
+  {
+    "POS":"QB",
+    "NAME":"Rivers, Philip",
+    "SALARY":7500,
+    "TIER":5,
+  },
+  {
+    "POS":"QB",
+    "NAME":"Cutler, Jay",
+    "SALARY":7500,
+    "TIER":3,
+  },
+  {
+    "POS":"QB",
+    "NAME":"Taylor, Tyrod",
+    "SALARY":7400,
+    "TIER":1,
+  },
+  {
+    "POS":"QB",
+    "NAME":"Kaepernick, Colin",
+    "SALARY":7300,
+    "TIER":2,
+  },
+  {
+    "POS":"QB",
+    "NAME":"Bortles, Blake",
+    "SALARY":7300,
+    "TIER":3,
+  },
+  {
+    "POS":"QB",
+    "NAME":"Mariota, Marcus",
+    "SALARY":7200,
+    "TIER":3,
+  },
+  {
+    "POS":"QB",
+    "NAME":"McCown, Josh",
+    "SALARY":7000,
+    "TIER":1,
+  },
+  {
+    "POS":"QB",
+    "NAME":"Smith, Alex",
+    "SALARY":7000,
+    "TIER":1,
+  },
+  {
+    "POS":"QB",
+    "NAME":"Fitzpatrick, Ryan",
+    "SALARY":6900,
+    "TIER":1,
+  },
+  {
+    "POS":"QB",
+    "NAME":"Stafford, Matthew",
+    "SALARY":6900,
+    "TIER":2,
+  },
+  {
+    "POS":"QB",
+    "NAME":"Hoyer, Brian",
+    "SALARY":6700,
+    "TIER":1,
+  },
+  {
+    "POS":"QB",
+    "NAME":"Bridgewater, Teddy",
+    "SALARY":6600,
+    "TIER":2,
+  },
+  {
+    "POS":"QB",
+    "NAME":"Manziel, Johnny",
+    "SALARY":6400,
+    "TIER":1,
+  },
+  {
+    "POS":"QB",
+    "NAME":"Vick, Michael",
+    "SALARY":6300,
+    "TIER":3,
+  },
+  {
+    "POS":"QB",
+    "NAME":"Mallett, Ryan",
+    "SALARY":6300,
+    "TIER":1,
+  },
+  {
+    "POS":"QB",
+    "NAME":"Cousins, Kirk",
+    "SALARY":6200,
+    "TIER":1,
+  },
+  {
+    "POS":"QB",
+    "NAME":"Hasselbeck, Matt",
+    "SALARY":6100,
+    "TIER":1,
+  },
+  {
+    "POS":"QB",
+    "NAME":"McCown, Luke",
+    "SALARY":5800,
+    "TIER":1,
+  }
+];
+
+module.exports = qb;
