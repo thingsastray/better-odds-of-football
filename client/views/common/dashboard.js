@@ -739,7 +739,7 @@ var allPos = [
     "PTS/GAME":9.34,
     "PTS/G/$":1.48,
     "PTS/G(ALT)":9.34,
-    "TIERS":11,
+    "TIERS":7,
     "FIELD15":""
   },
   {
@@ -756,7 +756,7 @@ var allPos = [
     "PTS/GAME":10.16,
     "PTS/G/$":1.61,
     "PTS/G(ALT)":10.16,
-    "TIERS":11,
+    "TIERS":8,
     "FIELD15":""
   },
   {
@@ -773,7 +773,7 @@ var allPos = [
     "PTS/GAME":2.23,
     "PTS/G/$":0.36,
     "PTS/G(ALT)":2.23,
-    "TIERS":9,
+    "TIERS":5,
     "FIELD15":""
   },
   {
@@ -807,7 +807,7 @@ var allPos = [
     "PTS/GAME":6.68,
     "PTS/G/$":1.09,
     "PTS/G(ALT)":6.68,
-    "TIERS":5,
+    "TIERS":8,
     "FIELD15":""
   },
   {
@@ -824,7 +824,7 @@ var allPos = [
     "PTS/GAME":13.06,
     "PTS/G/$":2.18,
     "PTS/G(ALT)":13.06,
-    "TIERS":10,
+    "TIERS":4,
     "FIELD15":""
   },
   {
@@ -841,7 +841,7 @@ var allPos = [
     "PTS/GAME":8.4,
     "PTS/G/$":1.42,
     "PTS/G(ALT)":8.4,
-    "TIERS":8,
+    "TIERS":9,
     "FIELD15":""
   },
   {
@@ -858,7 +858,7 @@ var allPos = [
     "PTS/GAME":7.48,
     "PTS/G/$":1.27,
     "PTS/G(ALT)":7.48,
-    "TIERS":9,
+    "TIERS":7,
     "FIELD15":""
   },
   {
@@ -875,7 +875,7 @@ var allPos = [
     "PTS/GAME":9.16,
     "PTS/G/$":1.55,
     "PTS/G(ALT)":9.16,
-    "TIERS":11,
+    "TIERS":5,
     "FIELD15":""
   },
   {
@@ -892,7 +892,7 @@ var allPos = [
     "PTS/GAME":6.24,
     "PTS/G/$":1.08,
     "PTS/G(ALT)":6.24,
-    "TIERS":8,
+    "TIERS":9,
     "FIELD15":""
   },
   {
@@ -926,7 +926,7 @@ var allPos = [
     "PTS/GAME":9.38,
     "PTS/G/$":1.68,
     "PTS/G(ALT)":9.38,
-    "TIERS":11,
+    "TIERS":7,
     "FIELD15":""
   },
   {
@@ -943,7 +943,7 @@ var allPos = [
     "PTS/GAME":12.2,
     "PTS/G/$":2.18,
     "PTS/G(ALT)":12.2,
-    "TIERS":9,
+    "TIERS":8,
     "FIELD15":""
   },
   {
@@ -977,7 +977,7 @@ var allPos = [
     "PTS/GAME":8.7,
     "PTS/G/$":1.58,
     "PTS/G(ALT)":8.7,
-    "TIERS":8,
+    "TIERS":9,
     "FIELD15":""
   },
   {
@@ -1011,7 +1011,7 @@ var allPos = [
     "PTS/GAME":7.23,
     "PTS/G/$":1.31,
     "PTS/G(ALT)":7.23,
-    "TIERS":5,
+    "TIERS":9,
     "FIELD15":""
   },
   {
@@ -1028,7 +1028,7 @@ var allPos = [
     "PTS/GAME":2.8,
     "PTS/G/$":0.51,
     "PTS/G(ALT)":2.8,
-    "TIERS":8,
+    "TIERS":9,
     "FIELD15":""
   },
   {
@@ -1062,7 +1062,7 @@ var allPos = [
     "PTS/GAME":5.48,
     "PTS/G/$":1.01,
     "PTS/G(ALT)":5.48,
-    "TIERS":7,
+    "TIERS":9,
     "FIELD15":""
   },
   {
@@ -1079,7 +1079,7 @@ var allPos = [
     "PTS/GAME":4.02,
     "PTS/G/$":0.74,
     "PTS/G(ALT)":4.02,
-    "TIERS":11,
+    "TIERS":9,
     "FIELD15":""
   },
   {
@@ -1096,7 +1096,7 @@ var allPos = [
     "PTS/GAME":12.75,
     "PTS/G/$":2.36,
     "PTS/G(ALT)":12.75,
-    "TIERS":4,
+    "TIERS":9,
     "FIELD15":""
   },
   {
@@ -1113,7 +1113,7 @@ var allPos = [
     "PTS/GAME":3.4,
     "PTS/G/$":0.63,
     "PTS/G(ALT)":3.4,
-    "TIERS":5,
+    "TIERS":9,
     "FIELD15":""
   },
   {
@@ -2361,7 +2361,7 @@ var allPos = [
     "PTS/GAME":21.2,
     "PTS/G/$":2.3,
     "PTS/G(ALT)":21.2,
-    "TIERS":10,
+    "TIERS":1,
     "FIELD15":""
   },
   {
@@ -2378,7 +2378,7 @@ var allPos = [
     "PTS/GAME":15.32,
     "PTS/G/$":1.68,
     "PTS/G(ALT)":15.32,
-    "TIERS":11,
+    "TIERS":1,
     "FIELD15":""
   },
   {
@@ -2395,7 +2395,7 @@ var allPos = [
     "PTS/GAME":16.96,
     "PTS/G/$":1.97,
     "PTS/G(ALT)":16.96,
-    "TIERS":11,
+    "TIERS":3,
     "FIELD15":""
   },
   {
@@ -2412,7 +2412,7 @@ var allPos = [
     "PTS/GAME":19.76,
     "PTS/G/$":2.32,
     "PTS/G(ALT)":19.76,
-    "TIERS":9,
+    "TIERS":1,
     "FIELD15":""
   },
   {
@@ -2429,7 +2429,7 @@ var allPos = [
     "PTS/GAME":12.92,
     "PTS/G/$":1.56,
     "PTS/G(ALT)":12.92,
-    "TIERS":7,
+    "TIERS":2,
     "FIELD15":""
   },
   {
@@ -2446,7 +2446,7 @@ var allPos = [
     "PTS/GAME":10.44,
     "PTS/G/$":1.27,
     "PTS/G(ALT)":10.44,
-    "TIERS":9,
+    "TIERS":2,
     "FIELD15":""
   },
   {
@@ -2463,7 +2463,7 @@ var allPos = [
     "PTS/GAME":16.6,
     "PTS/G/$":2.05,
     "PTS/G(ALT)":16.6,
-    "TIERS":7,
+    "TIERS":1,
     "FIELD15":""
   },
   {
@@ -2480,7 +2480,7 @@ var allPos = [
     "PTS/GAME":14.08,
     "PTS/G/$":1.74,
     "PTS/G(ALT)":14.08,
-    "TIERS":7,
+    "TIERS":2,
     "FIELD15":""
   },
   {
@@ -2497,7 +2497,7 @@ var allPos = [
     "PTS/GAME":17.75,
     "PTS/G/$":2.22,
     "PTS/G(ALT)":17.75,
-    "TIERS":5,
+    "TIERS":2,
     "FIELD15":""
   },
   {
@@ -2514,7 +2514,7 @@ var allPos = [
     "PTS/GAME":19.25,
     "PTS/G/$":2.44,
     "PTS/G(ALT)":19.25,
-    "TIERS":4,
+    "TIERS":1,
     "FIELD15":""
   },
   {
@@ -2531,7 +2531,7 @@ var allPos = [
     "PTS/GAME":14.16,
     "PTS/G/$":1.79,
     "PTS/G(ALT)":14.16,
-    "TIERS":7,
+    "TIERS":2,
     "FIELD15":""
   },
   {
@@ -2548,7 +2548,7 @@ var allPos = [
     "PTS/GAME":15.98,
     "PTS/G/$":2.08,
     "PTS/G(ALT)":15.98,
-    "TIERS":10,
+    "TIERS":2,
     "FIELD15":""
   },
   {
@@ -2565,7 +2565,7 @@ var allPos = [
     "PTS/GAME":20.1,
     "PTS/G/$":2.68,
     "PTS/G(ALT)":20.1,
-    "TIERS":9,
+    "TIERS":1,
     "FIELD15":""
   },
   {
@@ -2582,7 +2582,7 @@ var allPos = [
     "PTS/GAME":10.34,
     "PTS/G/$":1.4,
     "PTS/G(ALT)":10.34,
-    "TIERS":10,
+    "TIERS":3,
     "FIELD15":""
   },
   {
@@ -2599,7 +2599,7 @@ var allPos = [
     "PTS/GAME":10.3,
     "PTS/G/$":1.39,
     "PTS/G(ALT)":10.3,
-    "TIERS":7,
+    "TIERS":5,
     "FIELD15":""
   },
   {
@@ -2616,7 +2616,7 @@ var allPos = [
     "PTS/GAME":13.45,
     "PTS/G/$":1.84,
     "PTS/G(ALT)":13.45,
-    "TIERS":5,
+    "TIERS":4,
     "FIELD15":""
   },
   {
@@ -2633,7 +2633,7 @@ var allPos = [
     "PTS/GAME":14.36,
     "PTS/G/$":1.99,
     "PTS/G(ALT)":14.36,
-    "TIERS":9,
+    "TIERS":3,
     "FIELD15":""
   },
   {
@@ -2650,7 +2650,7 @@ var allPos = [
     "PTS/GAME":10.14,
     "PTS/G/$":1.45,
     "PTS/G(ALT)":10.14,
-    "TIERS":11,
+    "TIERS":4,
     "FIELD15":""
   },
   {
@@ -2667,7 +2667,7 @@ var allPos = [
     "PTS/GAME":7.76,
     "PTS/G/$":1.12,
     "PTS/G(ALT)":7.76,
-    "TIERS":9,
+    "TIERS":5,
     "FIELD15":""
   },
   {
@@ -2684,7 +2684,7 @@ var allPos = [
     "PTS/GAME":15.95,
     "PTS/G/$":2.38,
     "PTS/G(ALT)":15.95,
-    "TIERS":9,
+    "TIERS":7,
     "FIELD15":""
   },
   {
@@ -2701,7 +2701,7 @@ var allPos = [
     "PTS/GAME":15.04,
     "PTS/G/$":2.24,
     "PTS/G(ALT)":15.04,
-    "TIERS":8,
+    "TIERS":3,
     "FIELD15":""
   },
   {
@@ -2718,7 +2718,7 @@ var allPos = [
     "PTS/GAME":15.78,
     "PTS/G/$":2.39,
     "PTS/G(ALT)":15.78,
-    "TIERS":7,
+    "TIERS":4,
     "FIELD15":""
   },
   {
@@ -2735,7 +2735,7 @@ var allPos = [
     "PTS/GAME":10.7,
     "PTS/G/$":1.62,
     "PTS/G(ALT)":10.7,
-    "TIERS":8,
+    "TIERS":4,
     "FIELD15":""
   },
   {
@@ -2752,7 +2752,7 @@ var allPos = [
     "PTS/GAME":9.32,
     "PTS/G/$":1.43,
     "PTS/G(ALT)":9.32,
-    "TIERS":10,
+    "TIERS":5,
     "FIELD15":""
   },
   {
@@ -2769,7 +2769,7 @@ var allPos = [
     "PTS/GAME":14.5,
     "PTS/G/$":2.23,
     "PTS/G(ALT)":14.5,
-    "TIERS":8,
+    "TIERS":4,
     "FIELD15":""
   },
   {
@@ -2786,7 +2786,7 @@ var allPos = [
     "PTS/GAME":16.02,
     "PTS/G/$":2.54,
     "PTS/G(ALT)":16.02,
-    "TIERS":11,
+    "TIERS":6,
     "FIELD15":""
   },
   {
@@ -2803,7 +2803,7 @@ var allPos = [
     "PTS/GAME":13.58,
     "PTS/G/$":2.15,
     "PTS/G(ALT)":13.58,
-    "TIERS":5,
+    "TIERS":8,
     "FIELD15":""
   },
   {
@@ -2837,7 +2837,7 @@ var allPos = [
     "PTS/GAME":7.24,
     "PTS/G/$":1.17,
     "PTS/G(ALT)":7.24,
-    "TIERS":10,
+    "TIERS":7,
     "FIELD15":""
   },
   {
@@ -2854,7 +2854,7 @@ var allPos = [
     "PTS/GAME":10.62,
     "PTS/G/$":1.71,
     "PTS/G(ALT)":10.62,
-    "TIERS":11,
+    "TIERS":4,
     "FIELD15":""
   },
   {
@@ -2871,7 +2871,7 @@ var allPos = [
     "PTS/GAME":11.56,
     "PTS/G/$":1.86,
     "PTS/G(ALT)":11.56,
-    "TIERS":10,
+    "TIERS":5,
     "FIELD15":""
   },
   {
@@ -2905,7 +2905,7 @@ var allPos = [
     "PTS/GAME":10.98,
     "PTS/G/$":1.8,
     "PTS/G(ALT)":10.98,
-    "TIERS":9,
+    "TIERS":5,
     "FIELD15":""
   },
   {
@@ -2922,7 +2922,7 @@ var allPos = [
     "PTS/GAME":6.26,
     "PTS/G/$":1.04,
     "PTS/G(ALT)":6.26,
-    "TIERS":10,
+    "TIERS":7,
     "FIELD15":""
   },
   {
@@ -2939,7 +2939,7 @@ var allPos = [
     "PTS/GAME":10.44,
     "PTS/G/$":1.74,
     "PTS/G(ALT)":10.44,
-    "TIERS":8,
+    "TIERS":6,
     "FIELD15":""
   },
   {
@@ -2956,7 +2956,7 @@ var allPos = [
     "PTS/GAME":7.16,
     "PTS/G/$":1.19,
     "PTS/G(ALT)":7.16,
-    "TIERS":9,
+    "TIERS":6,
     "FIELD15":""
   },
   {
@@ -2973,7 +2973,7 @@ var allPos = [
     "PTS/GAME":9.28,
     "PTS/G/$":1.6,
     "PTS/G(ALT)":9.28,
-    "TIERS":10,
+    "TIERS":6,
     "FIELD15":""
   },
   {
@@ -2990,7 +2990,7 @@ var allPos = [
     "PTS/GAME":10.06,
     "PTS/G/$":1.73,
     "PTS/G(ALT)":10.06,
-    "TIERS":9,
+    "TIERS":7,
     "FIELD15":""
   },
   {
@@ -3007,7 +3007,7 @@ var allPos = [
     "PTS/GAME":11.4,
     "PTS/G/$":1.97,
     "PTS/G(ALT)":11.4,
-    "TIERS":4,
+    "TIERS":5,
     "FIELD15":""
   },
   {
@@ -3024,7 +3024,7 @@ var allPos = [
     "PTS/GAME":6.4,
     "PTS/G/$":1.1,
     "PTS/G(ALT)":6.4,
-    "TIERS":7,
+    "TIERS":8,
     "FIELD15":""
   },
   {
