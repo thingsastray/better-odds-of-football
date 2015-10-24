@@ -27,6 +27,10 @@ Template.mainChart.rendered = function() {
                   .showDistY(true)
                   .color(d3.scale.category10().range());
 
+    function tooltipContent(key, y, e, graph) {
+      return 'brock';
+    }
+
     chart.xAxis
       .tickFormat(d3.format('f'));
     chart.yAxis
@@ -70,8 +74,9 @@ var data = (function (groups, points, names) {
 
     for (j = 0; j < points; j++) {
       dataArray[i].values.push({
-        x : allPos[i][j]["TIERS"]
-      , y : allPos[i][j]["SALARY"]
+        x : allPos[i][j][ 'TIERS' ]
+      , y : allPos[i][j][ 'SALARY' ]
+      , name : allPos[i][j][ 'NAME' ]
       , size : Math.random()
       //, shape : shapes[j % 6]
       });
